@@ -31,16 +31,16 @@ export default function Page() {
       <div className="max-w-screen-xl rounded-xl border-2 border-black-100">
         <section className="m-2 border-slate-400 border-b-2 flex justify-center">
           <div className="p-2 container max-w-screen-xl">
-            <h1 className="text-3xl">{payload.nama_faskes}</h1>
-            <h1>{payload.kelas_faskes}</h1>
+            <h1 className="text-3xl">{payload["nama faskes"]}</h1>
+            <h1>{payload["kelas faskes"]}</h1>
             <h1>
-              {`${payload.alamat["Jalan"]},
-            ${payload.alamat["Kelurahan"]},
-            ${payload.alamat["Kecamatan"]} ,
-            ${payload.alamat["Kota/Kabupaten"]},
-            ${payload.alamat["Provinsi"]}`}
+              {`${payload.alamat["jalan"]},
+            ${payload.alamat["kelurahan"]},
+            ${payload.alamat["kecamatan"]} ,
+            ${payload.alamat["kotakabupaten"]},
+            ${payload.alamat["provinsi"]}`}
             </h1>
-            <h1>{payload.nomor_spgdt}</h1>
+            <h1>{payload["nomor spgdt"]}</h1>
             <p>
               BPJS:
               {payload.BPJS ? (
@@ -65,7 +65,7 @@ export default function Page() {
               <h1 className="text-3xl">Fasilitas Kegawatdaruratan</h1>
               <ul>
                 {payload.fasilitas_emergensi.map((item, index) => (
-                  <li key={index}>{item}</li>
+                  <li key={index}>{item.unit}</li>
                 ))}
               </ul>
             </div>
@@ -84,7 +84,7 @@ export default function Page() {
                     <ul className="p-4 rounded-b bg-slate-100">
                       {i.unit.map((o, index) => (
                         <li key={index} className="ml-2">
-                          {o}
+                          {o.unit}
                         </li>
                       ))}
                     </ul>
@@ -101,7 +101,7 @@ export default function Page() {
             <ul className="flex flex-wrap flex-row">
               {payload.fasilitas_terapi.map((i, index) => (
                 <li className="m-2 p-2 rounded bg-slate-100" key={index}>
-                  {i}
+                  {i.unit}
                 </li>
               ))}
             </ul>
@@ -110,7 +110,7 @@ export default function Page() {
         <section className="m-2 p-2 border-slate-400 border-b-2">
           <h1 className="text-3xl">Spesialisasi</h1>
           <div className="flex flex-row flex-wrap">
-            {payload.subspesialis.map((item, index) => (
+            {payload.spesialis.map((item, index) => (
               <div className="m-2 w-60" key={index}>
                 <div className="p-2 text-white rounded-t bg-slate-400">
                   {item.spesialisasi}
@@ -118,7 +118,7 @@ export default function Page() {
                 <ul className="p-4 rounded-b bg-slate-100">
                   {item.sub.map((i, index) => (
                     <li className="ml-2" key={index}>
-                      {toSentenceCase(i)}
+                      {i?.sub}
                     </li>
                   ))}
                 </ul>

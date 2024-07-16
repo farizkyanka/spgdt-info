@@ -10,9 +10,9 @@ export default function Page() {
             className="m-2 rounded-xl border-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6"
           >
             <div className="p-2 max-h-56 flex flex-col overflow-hidden bg-slate-200">
-              <h2 className="self-center">{unit.kelas_faskes}</h2>
-              <h2>{unit.nama_faskes}</h2>
-              <h2>{`${unit.alamat.Jalan} ${unit.alamat["Kota/Kabupaten"]}`}</h2>
+              <h2 className="self-center">{unit["nama faskes"]}</h2>
+              <h2>{unit["kelas faskes"]}</h2>
+              <h2>{`${unit.alamat.jalan} ${unit.alamat.kotakabupaten}`}</h2>
             </div>
             <div className="p-2 h-56 flex flex-col bg-slate-200">
               <h1 className="self-center mb-2">Rawat</h1>
@@ -29,20 +29,24 @@ export default function Page() {
               <h1 className="self-center">Fasilitas Emergensi</h1>
               <ul className="overflow-auto">
                 {unit.fasilitas_emergensi.map((item, index) => (
-                  <li key={index}>- {item}</li>
+                  <li key={index}>- {item.unit}</li>
                 ))}
               </ul>
             </div>
             <div className="p-2 h-56 flex flex-col bg-slate-200">
               <h2 className="self-center mb-2">Spesialis</h2>
               <ul className="overflow-auto">
-                {unit.subspesialis.map((i, index) => (
+                {unit.spesialis.map((item, index) => (
                   <li key={index}>
-                    - {i.spesialisasi}{" "}
+                    - {item.spesialisasi}
                     <p className="ml-2">
-                      {i.sub.map((o, index) => (
-                        <p key={index}>{o}</p>
-                      ))}
+                      <ul>
+                        {item.sub.map((i, index) => (
+                          <li className="ml-2" key={index}>
+                            {`-${i.sub}`}
+                          </li>
+                        ))}
+                      </ul>
                     </p>
                   </li>
                 ))}
@@ -57,7 +61,7 @@ export default function Page() {
                     <ul>
                       {i.unit.map((o, index) => (
                         <li key={index} className="ml-2">
-                          {o}
+                          {o.unit}
                         </li>
                       ))}
                     </ul>
@@ -69,7 +73,7 @@ export default function Page() {
               <h1 className="self-center mb-2">Fasilitas Terapi</h1>
               <ul className="overflow-auto">
                 {unit.fasilitas_terapi.map((i, index) => (
-                  <li key={index}>{i}</li>
+                  <li key={index}>{i.unit}</li>
                 ))}
               </ul>
             </div>
