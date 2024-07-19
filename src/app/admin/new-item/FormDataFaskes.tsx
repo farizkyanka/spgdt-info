@@ -1,25 +1,51 @@
 "use client";
 
-import { useFormDataFaskesContext } from "@/components/forms/Data Faskes/formDataFaskesSchema";
-import FasilitasDiagnostik from "./FormFasilitasDiagnostik";
-import FasilitasTerapi from "./FormFasilitasTerapi";
-import FasilitasEmergensi from "./FormFasilitasEmergensi";
-import Spesialis from "./FormSpesialis";
-import FormRuangRawat from "./FormRuangRawat";
-import FormAlamat from "./FormAlamat";
+import {
+  FormTypeDataFaskes,
+  useFormDataFaskesContext,
+} from "@/components/forms/Data Faskes/formDataFaskesSchema";
+import FasilitasDiagnostik from "../../../components/forms/Data Faskes/FormFasilitasDiagnostik";
+import FasilitasTerapi from "../../../components/forms/Data Faskes/FormFasilitasTerapi";
+import FasilitasEmergensi from "../../../components/forms/Data Faskes/FormFasilitasEmergensi";
+import Spesialis from "../../../components/forms/Data Faskes/FormSpesialis";
+import FormRuangRawat from "../../../components/forms/Data Faskes/FormRuangRawat";
+import FormAlamat from "../../../components/forms/Data Faskes/FormAlamat";
+import { useRouter, useParams } from "next/navigation";
 
 export default function FormDataFaskes() {
+  const router = useRouter();
+  const params = useParams<{ id: string }>();
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useFormDataFaskesContext();
 
+  const submitform = async (data: FormTypeDataFaskes) => {
+    const sendData = JSON.stringify(data);
+    try {
+      const response = await fetch("/api/faskes", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: sendData,
+      });
+
+      if (response.ok) {
+        return router.push("/");
+      }
+    } catch (e) {
+      throw new Error("error");
+    }
+  };
+
   return (
     <main className="flex justify-center">
       <section className="w-full m-2 p-2 max-w-screen-lg rounded-lg border-2">
         <form
-          onSubmit={handleSubmit((data) => console.log(JSON.stringify(data)))}
+          onSubmit={handleSubmit((data) => {
+            submitform(data);
+          })}
         >
           <fieldset className="flex flex-row justify-evenly border-2 p-2">
             <legend>Data Faskes</legend>
@@ -55,3 +81,9 @@ export default function FormDataFaskes() {
     </main>
   );
 }
+
+export const fetcher = async () => {
+  const response = await fetch("http://localhost:3000/api/faskes");
+  const data = await response.json();
+  return data;
+};

@@ -1,5 +1,6 @@
 "use client";
 
+import { FaskesType } from "@/lib/schema/Faskes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ReactNode } from "react";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
@@ -51,10 +52,17 @@ export const schemaDataFaskes = z.object({
 
 export type FormTypeDataFaskes = z.infer<typeof schemaDataFaskes>;
 
-export const useFormDataFaskes = () =>
-  useForm<FormTypeDataFaskes>({
+// export const useFormDataFaskes = () =>
+//   useForm<FormTypeDataFaskes>({
+//     resolver: zodResolver(schemaDataFaskes),
+//   });
+
+export function useFormDataFaskes(props?: FormTypeDataFaskes) {
+  return useForm<FormTypeDataFaskes>({
     resolver: zodResolver(schemaDataFaskes),
+    defaultValues: props,
   });
+}
 
 // Form Context
 

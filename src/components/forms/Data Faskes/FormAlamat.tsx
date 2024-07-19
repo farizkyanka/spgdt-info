@@ -1,5 +1,5 @@
 import { useFormDataFaskesContext } from "@/components/forms/Data Faskes/formDataFaskesSchema";
-import { provinsi } from "@/utils/FormProvinsi";
+import { provinsi } from "@/lib/FormProvinsi";
 import { useState } from "react";
 
 export default function FormAlamat() {
@@ -75,7 +75,6 @@ export default function FormAlamat() {
     <>
       <label htmlFor="alamat">Alamat Faskes</label>
       <select {...register("alamat.provinsi")} className="m-2 p-1 rounded-md">
-        <option>-pilih provinsi-</option>
         {provinsi.map((i, index) => {
           return (
             <option

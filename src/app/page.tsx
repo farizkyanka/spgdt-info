@@ -20,6 +20,11 @@ export default function Home() {
             new item
           </Link>
         </h1>
+        <h1>
+          <Link className="" href={"/admin/edit-item"}>
+            edit item
+          </Link>
+        </h1>
       </div>
     </main>
   );

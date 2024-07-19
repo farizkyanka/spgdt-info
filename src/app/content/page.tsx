@@ -1,30 +1,12 @@
 import { RiVerifiedBadgeFill } from "react-icons/ri";
-import { datum } from "./seedData";
-import toSentenceCase from "@/utils/sentenceCase";
+import { FormTypeDataFaskes } from "@/components/forms/Data Faskes/formDataFaskesSchema";
 
-export default function Page() {
-  // type dataType = {
-  //     nama_faskes: string,
-  //     kelas_faskes: string,
-  //     alamat: {
-  //       Provinsi: string,
-  //       "Kota/Kabupaten": string,
-  //       Kecamatan: string,
-  //       Kelurahan: string,
-  //       Jalan: string,
-  //     },
-  //     nomor_spgdt: string,
-  //     BPJS: boolean,
-  //     spesialis: string[]
-  //     subspesialis: object[],
-  //     ruang_rawat: {
-  //       [key:string]: number | string
-  //     },
-  //     fasilitas_emergensi: string[]
-  //     fasilitas_diagnostik: object[],
-  //     fasilitas_terapi: string[]
-  //   }
-  const payload = datum;
+export default async function Page() {
+  const response = await fetch("http://localhost:3000/api/faskes");
+
+  if (!response.ok) throw new Error("failed to fetch data");
+  const faskes = await response.json();
+  const payload: FormTypeDataFaskes = faskes.faskes;
 
   return (
     <main className="max-w-screen m-2 flex justify-center">
@@ -34,11 +16,11 @@ export default function Page() {
             <h1 className="text-3xl">{payload["nama faskes"]}</h1>
             <h1>{payload["kelas faskes"]}</h1>
             <h1>
-              {`${payload.alamat["jalan"]},
-            ${payload.alamat["kelurahan"]},
-            ${payload.alamat["kecamatan"]} ,
-            ${payload.alamat["kotakabupaten"]},
-            ${payload.alamat["provinsi"]}`}
+              {`${payload.alamat.jalan},
+            ${payload.alamat.kelurahan},
+            ${payload.alamat.kecamatan} ,
+            ${payload.alamat.kotakabupaten},
+            ${payload.alamat.provinsi}`}
             </h1>
             <h1>{payload["nomor spgdt"]}</h1>
             <p>
@@ -56,7 +38,7 @@ export default function Page() {
             <div className="mb-4">
               <h1 className="text-3xl">Fasilitas Rawat</h1>
               <ul className="flex flex-col">
-                {payload.ruang_rawat.map((item, index) => (
+                {payload["ruang rawat"].map((item, index) => (
                   <li key={index}>{`${item.ruang}: ${item.jumlah}`}</li>
                 ))}
               </ul>
@@ -64,7 +46,7 @@ export default function Page() {
             <div>
               <h1 className="text-3xl">Fasilitas Kegawatdaruratan</h1>
               <ul>
-                {payload.fasilitas_emergensi.map((item, index) => (
+                {payload["fasilitas emergensi"].map((item, index) => (
                   <li key={index}>{item.unit}</li>
                 ))}
               </ul>
@@ -76,7 +58,7 @@ export default function Page() {
             <h1 className="text-3xl">Fasilitas Diagnostik</h1>
             <div className="w-full flex justify-center">
               <div className="m-2 flex flex-row flex-wrap container max-w-screen-xl">
-                {payload.fasilitas_diagnostik.map((i, index) => (
+                {payload["fasilitas diagnostik"].map((i, index) => (
                   <div className="m-2 w-60" key={index}>
                     <div className="p-2 bg-slate-400 rounded-t text-white">
                       {i.spesialisasi}
@@ -99,7 +81,7 @@ export default function Page() {
           <div>
             <h1 className="text-3xl">Fasilitas Terapi</h1>
             <ul className="flex flex-wrap flex-row">
-              {payload.fasilitas_terapi.map((i, index) => (
+              {payload["fasilitas terapi"].map((i, index) => (
                 <li className="m-2 p-2 rounded bg-slate-100" key={index}>
                   {i.unit}
                 </li>
