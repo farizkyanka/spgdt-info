@@ -1,12 +1,13 @@
 import { RiVerifiedBadgeFill } from "react-icons/ri";
-import { FormTypeDataFaskes } from "@/components/forms/Data Faskes/formDataFaskesSchema";
+import Link from "next/link";
+import { PayloadType } from "@/lib/schema/Faskes";
+import DeleteItem from "@/components/elements/DeleteItem";
 
-export default async function Page() {
+export default async function Page({ params }: { params: { id: string } }) {
   const response = await fetch("http://localhost:3000/api/faskes");
-
   if (!response.ok) throw new Error("failed to fetch data");
   const faskes = await response.json();
-  const payload: FormTypeDataFaskes = faskes.faskes;
+  const payload: PayloadType = faskes.faskes;
 
   return (
     <main className="max-w-screen m-2 flex justify-center">
@@ -31,6 +32,10 @@ export default async function Page() {
                 "tidak"
               )}
             </p>
+          </div>
+          <div className="flex flex-shrink">
+            <Link href={`/admin/edit-item/${payload._id}`}>Edit</Link>
+            <DeleteItem />
           </div>
         </section>
         <section className="m-2 p-2 border-slate-400 border-b-2 flex justify-center">

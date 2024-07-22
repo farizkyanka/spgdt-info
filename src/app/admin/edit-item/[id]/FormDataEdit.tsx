@@ -25,11 +25,11 @@ export default function FormDataFaskes() {
   } = useFormDataFaskesContext();
 
   const resetAsyncForm = useCallback(async () => {
-    const result = await fetch(`http://localhost:3000/api/faskes/${params}`);
+    const result = await fetch(`http://localhost:3000/api/faskes/${params.id}`);
     try {
       if (!result.ok) return null;
-      const data: { faskes: FormTypeDataFaskes } = await result.json();
-      reset(data.faskes);
+      const data = await result.json();
+      reset(data);
     } catch (e) {
       JSON.stringify(e);
     }

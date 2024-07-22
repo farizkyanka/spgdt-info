@@ -1,29 +1,9 @@
+import { FormTypeDataFaskes } from "@/components/forms/Data Faskes/formDataFaskesSchema";
 import mongoose, { Document, Schema } from "mongoose";
 
-export type FaskesType = {
-  "nama faskes": string;
-  "kelas faskes": string;
-  alamat: {
-    provinsi: string;
-    kotakabupaten: string;
-    kecamatan: string;
-    kelurahan: string;
-    jalan: string;
-  };
-  "nomor spgdt": string;
-  BPJS: boolean;
-  "fasilitas emergensi": { unit: string }[];
-  spesialis: {
-    spesialisasi: string;
-    sub: { sub: string }[];
-  }[];
-  "ruang rawat": { ruang: string; jumlah: number }[];
-  "fasilitas diagnostik": {
-    spesialisasi: string;
-    unit: { unit: string }[];
-  }[];
-  "fasilitas terapi": { unit: string }[];
-};
+export interface PayloadType extends FormTypeDataFaskes {
+  _id: string;
+}
 
 export interface IFaskes extends Document {
   "nama faskes": string;

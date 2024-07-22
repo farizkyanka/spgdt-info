@@ -10,11 +10,10 @@ import FasilitasEmergensi from "../../../components/forms/Data Faskes/FormFasili
 import Spesialis from "../../../components/forms/Data Faskes/FormSpesialis";
 import FormRuangRawat from "../../../components/forms/Data Faskes/FormRuangRawat";
 import FormAlamat from "../../../components/forms/Data Faskes/FormAlamat";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function FormDataFaskes() {
   const router = useRouter();
-  const params = useParams<{ id: string }>();
 
   const {
     register,

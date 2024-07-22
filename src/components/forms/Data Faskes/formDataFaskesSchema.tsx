@@ -1,6 +1,5 @@
 "use client";
 
-import { FaskesType } from "@/lib/schema/Faskes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ReactNode } from "react";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";

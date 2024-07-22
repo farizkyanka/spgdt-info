@@ -6,8 +6,23 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   await dbConnect();
-  const id = params.id; // 'a', 'b', or 'c'
-  console.log(id);
-  const faskes = await Faskes.findById({ id });
+  console.log(params.id);
+  const faskes = await Faskes.findById(params.id);
+  return Response.json(faskes);
+}
+
+export async function PATCH(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  return Response.json("message");
+}
+
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  await dbConnect();
+  const faskes = await Faskes.findByIdAndDelete(params.id);
   return Response.json(faskes);
 }
