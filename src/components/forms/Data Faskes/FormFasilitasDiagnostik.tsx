@@ -9,7 +9,7 @@ export default function FasilitasDiagnostik() {
   } = useFormDataFaskesContext();
 
   const { append, remove, fields } = useFieldArray({
-    name: "fasilitas diagnostik",
+    name: "fasilitasDiagnostik",
     control,
   });
 
@@ -21,7 +21,7 @@ export default function FasilitasDiagnostik() {
           return (
             <li className="m-2 rounded-xl border-2" key={diag.id}>
               <input
-                {...register(`fasilitas diagnostik.${diagIndex}.spesialisasi`)}
+                {...register(`fasilitasDiagnostik.${diagIndex}.spesialisasi`)}
                 type="text"
                 className="rounded border-2"
               />
@@ -51,7 +51,7 @@ const UnitFasilitasDiagnostik = ({ diagIndex }: { diagIndex: number }) => {
   } = useFormDataFaskesContext();
 
   const { append, remove, fields } = useFieldArray({
-    name: `fasilitas diagnostik.${diagIndex}.unit`,
+    name: `fasilitasDiagnostik.${diagIndex}.unit`,
     control,
   });
 
@@ -64,7 +64,7 @@ const UnitFasilitasDiagnostik = ({ diagIndex }: { diagIndex: number }) => {
             <li key={unit.id}>
               <input
                 {...register(
-                  `fasilitas diagnostik.${diagIndex}.unit.${unitIndex}.unit`
+                  `fasilitasDiagnostik.${diagIndex}.unit.${unitIndex}.unit`
                 )}
                 type="text"
                 className="rounded border-2"

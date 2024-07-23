@@ -18,8 +18,8 @@ export default async function Page({ params }: { params: { id: string } }) {
       <div className="max-w-screen-xl rounded-xl border-2 border-black-100">
         <section className="m-2 border-slate-400 border-b-2 flex justify-center">
           <div className="p-2 container max-w-screen-xl">
-            <h1 className="text-3xl">{payload["nama faskes"]}</h1>
-            <h1>{payload["kelas faskes"]}</h1>
+            <h1 className="text-3xl">{payload["namaFaskes"]}</h1>
+            <h1>{payload["kelasFaskes"]}</h1>
             <h1>
               {`${payload.alamat.jalan},
             ${payload.alamat.kelurahan},
@@ -27,7 +27,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             ${payload.alamat.kotakabupaten},
             ${payload.alamat.provinsi}`}
             </h1>
-            <h1>{payload["nomor spgdt"]}</h1>
+            <h1>{payload["nomorSPGDT"]}</h1>
             <p>
               BPJS:
               {payload.BPJS ? (
@@ -47,7 +47,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             <div className="mb-4">
               <h1 className="text-3xl">Fasilitas Rawat</h1>
               <ul className="flex flex-col">
-                {payload["ruang rawat"].map((item, index) => (
+                {payload["ruangRawat"].map((item, index) => (
                   <li key={index}>{`${item.ruang}: ${item.jumlah}`}</li>
                 ))}
               </ul>
@@ -55,7 +55,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             <div>
               <h1 className="text-3xl">Fasilitas Kegawatdaruratan</h1>
               <ul>
-                {payload["fasilitas emergensi"].map((item, index) => (
+                {payload["fasilitasEmergensi"].map((item, index) => (
                   <li key={index}>{item.unit}</li>
                 ))}
               </ul>
@@ -67,7 +67,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             <h1 className="text-3xl">Fasilitas Diagnostik</h1>
             <div className="w-full flex justify-center">
               <div className="m-2 flex flex-row flex-wrap container max-w-screen-xl">
-                {payload["fasilitas diagnostik"].map((i, index) => (
+                {payload["fasilitasDiagnostik"].map((i, index) => (
                   <div className="m-2 w-60" key={index}>
                     <div className="p-2 bg-slate-400 rounded-t text-white">
                       {i.spesialisasi}
@@ -90,7 +90,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <div>
             <h1 className="text-3xl">Fasilitas Terapi</h1>
             <ul className="flex flex-wrap flex-row">
-              {payload["fasilitas terapi"].map((i, index) => (
+              {payload["fasilitasTerapi"].map((i, index) => (
                 <li className="m-2 p-2 rounded bg-slate-100" key={index}>
                   {i.unit}
                 </li>

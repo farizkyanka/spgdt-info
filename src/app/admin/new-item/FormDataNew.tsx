@@ -8,17 +8,14 @@ import FasilitasDiagnostik from "../../../components/forms/Data Faskes/FormFasil
 import FasilitasTerapi from "../../../components/forms/Data Faskes/FormFasilitasTerapi";
 import FasilitasEmergensi from "../../../components/forms/Data Faskes/FormFasilitasEmergensi";
 import Spesialis from "../../../components/forms/Data Faskes/FormSpesialis";
-import FormRuangRawat from "../../../components/forms/Data Faskes/FormRuangRawat";
-import FormAlamat from "../../../components/forms/Data Faskes/FormAlamat";
 import { useRouter } from "next/navigation";
-import { TipeFaskes } from "../edit-item/[id]/FormDataEdit";
+import FormIdFaskes from "@/components/forms/Data Faskes/FormIdFaskes";
 
 export default function FormDataFaskes() {
   const router = useRouter();
 
   const {
-    register,
-    formState: { errors },
+    formState: { isSubmitting },
     handleSubmit,
   } = useFormDataFaskesContext();
 
@@ -49,31 +46,7 @@ export default function FormDataFaskes() {
         >
           <fieldset className="flex flex-row justify-evenly border-2 p-2">
             <legend>Data Faskes</legend>
-            <div className="flex flex-col md:w-1/2">
-              <label htmlFor="nama faskes">Nama Faskes</label>
-              <input {...register("nama faskes")} />
-              <label htmlFor="kelas faskes">Kelas Faskes</label>
-              <select
-                className="m-2 p-1 rounded-md"
-                {...register("kelas faskes")}
-              >
-                {TipeFaskes.map((i, index) => {
-                  return (
-                    <option key={index} value={i}>
-                      {i}
-                    </option>
-                  );
-                })}
-              </select>
-              <FormAlamat />
-              <label htmlFor="nomor spgdt">Nomor SPGDT</label>
-              <input type="tel" {...register("nomor spgdt")} />
-              <label htmlFor="BPJS">BPJS</label>
-              <input type="checkbox" {...register("BPJS")} />
-            </div>
-            <div className="md:w-1/2">
-              <FormRuangRawat />
-            </div>
+            <FormIdFaskes />
           </fieldset>
           <fieldset className="flex flex-col border-2 p-2">
             <legend>Fasilitas Faskes</legend>
@@ -86,15 +59,11 @@ export default function FormDataFaskes() {
               <Spesialis />
             </div>
           </fieldset>
-          <button type="submit">Submit</button>
+          <button disabled={isSubmitting} type="submit">
+            {isSubmitting ? "Submitting..." : "Submit"}
+          </button>
         </form>
       </section>
     </main>
   );
 }
-
-export const fetcher = async () => {
-  const response = await fetch("http://localhost:3000/api/faskes");
-  const data = await response.json();
-  return data;
-};

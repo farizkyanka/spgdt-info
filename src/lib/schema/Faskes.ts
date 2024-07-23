@@ -6,8 +6,8 @@ export interface PayloadType extends FormTypeDataFaskes {
 }
 
 export interface IFaskes extends Document {
-  "nama faskes": string;
-  "kelas faskes": string;
+  namaFaskes: string;
+  kelasFaskes: string;
   alamat: {
     provinsi: string;
     kotakabupaten: string;
@@ -15,28 +15,28 @@ export interface IFaskes extends Document {
     kelurahan: string;
     jalan: string;
   };
-  "nomor spgdt": string;
+  nomorSPGDT: string;
   BPJS: boolean;
-  "fasilitas emergensi": [{ unit: string }];
+  fasilitasEmergensi: [{ unit: string }];
   spesialis: [
     {
       spesialisasi: string;
       sub: [{ sub: string }];
     }
   ];
-  "ruang rawat": [{ ruang: string; jumlah: number }];
-  "fasilitas diagnostik": [
+  ruangRawat: [{ ruang: string; jumlah: number }];
+  fasilitasDiagnostik: [
     {
       spesialisasi: string;
       unit: [{ unit: string }];
     }
   ];
-  "fasilitas terapi": [{ unit: string }];
+  fasilitasTerapi: [{ unit: string }];
 }
 
 const faskesSchema: Schema<IFaskes> = new mongoose.Schema({
-  "nama faskes": { type: String, required: true },
-  "kelas faskes": { type: String, required: true },
+  namaFaskes: { type: String, required: true },
+  kelasFaskes: { type: String, required: true },
   alamat: {
     provinsi: { type: String, required: true },
     kotakabupaten: { type: String, required: true },
@@ -44,23 +44,23 @@ const faskesSchema: Schema<IFaskes> = new mongoose.Schema({
     kelurahan: { type: String, required: true },
     jalan: { type: String, required: true },
   },
-  "nomor spgdt": { type: String, required: true },
+  nomorSPGDT: { type: String, required: true },
   BPJS: { type: Boolean, required: true },
-  "fasilitas emergensi": [{ unit: String }],
+  fasilitasEmergensi: [{ unit: String }],
   spesialis: [
     {
       spesialisasi: String,
       sub: [{ sub: String }],
     },
   ],
-  "ruang rawat": [{ ruang: String, jumlah: Number }],
-  "fasilitas diagnostik": [
+  ruangRawat: [{ ruang: String, jumlah: Number }],
+  fasilitasDiagnostik: [
     {
       spesialisasi: String,
       unit: [{ unit: String }],
     },
   ],
-  "fasilitas terapi": [{ unit: String }],
+  fasilitasTerapi: [{ unit: String }],
 });
 
 const Faskes =

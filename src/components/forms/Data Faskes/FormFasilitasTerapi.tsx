@@ -9,7 +9,7 @@ export default function FasilitasTerapi() {
   } = useFormDataFaskesContext();
 
   const { append, remove, fields } = useFieldArray({
-    name: "fasilitas terapi",
+    name: "fasilitasTerapi",
     control,
   });
 
@@ -21,7 +21,7 @@ export default function FasilitasTerapi() {
           return (
             <li key={ter.id}>
               <input
-                {...register(`fasilitas terapi.${terIndex}.unit`)}
+                {...register(`fasilitasTerapi.${terIndex}.unit`)}
                 type="text"
                 className="rounded border-2"
               />

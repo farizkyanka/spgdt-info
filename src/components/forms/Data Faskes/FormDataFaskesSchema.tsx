@@ -29,8 +29,8 @@ const schemaRuangRawat = z.array(
 );
 
 export const schemaDataFaskes = z.object({
-  "nama faskes": z.string(),
-  "kelas faskes": z.string(),
+  namaFaskes: z.string(),
+  kelasFaskes: z.string(),
   alamat: z.object({
     provinsi: z.string(),
     kotakabupaten: z.string(),
@@ -38,13 +38,13 @@ export const schemaDataFaskes = z.object({
     kelurahan: z.string(),
     jalan: z.string(),
   }),
-  "nomor spgdt": z.string(),
+  nomorSPGDT: z.string(),
   BPJS: z.boolean(),
-  "fasilitas emergensi": z.array(z.object({ unit: z.string() })),
-  "fasilitas terapi": z.array(z.object({ unit: z.string() })),
+  fasilitasEmergensi: z.array(z.object({ unit: z.string() })),
+  fasilitasTerapi: z.array(z.object({ unit: z.string() })),
   spesialis: schemaSpesialis,
-  "fasilitas diagnostik": schemaDiagnostik,
-  "ruang rawat": schemaRuangRawat,
+  fasilitasDiagnostik: schemaDiagnostik,
+  ruangRawat: schemaRuangRawat,
 });
 
 // Form Hook

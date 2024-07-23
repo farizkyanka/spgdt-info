@@ -9,7 +9,7 @@ export default function FormRuangRawat() {
   } = useFormDataFaskesContext();
 
   const { append, remove, fields } = useFieldArray({
-    name: "ruang rawat",
+    name: "ruangRawat",
     control,
   });
 
@@ -20,7 +20,7 @@ export default function FormRuangRawat() {
         {fields.map((rg, rgIndex) => {
           return (
             <li key={rg.id}>
-              <select {...register(`ruang rawat.${rgIndex}.ruang`)}>
+              <select {...register(`ruangRawat.${rgIndex}.ruang`)}>
                 <option value="PICU">PICU</option>
                 <option value="NICU">NICU</option>
                 <option value="ICU">ICU</option>
@@ -30,7 +30,7 @@ export default function FormRuangRawat() {
                 <option value="Rawat Dewasa">Rawat Dewasa</option>
               </select>
               <input
-                {...register(`ruang rawat.${rgIndex}.jumlah`)}
+                {...register(`ruangRawat.${rgIndex}.jumlah`)}
                 type="number"
                 className="rounded border-2"
               />

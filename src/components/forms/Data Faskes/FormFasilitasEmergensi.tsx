@@ -9,7 +9,7 @@ export default function FasilitasEmergensi() {
   } = useFormDataFaskesContext();
 
   const { append, remove, fields } = useFieldArray({
-    name: "fasilitas emergensi",
+    name: "fasilitasEmergensi",
     control,
   });
 
@@ -21,7 +21,7 @@ export default function FasilitasEmergensi() {
           return (
             <li key={emg.id}>
               <input
-                {...register(`fasilitas emergensi.${emgIndex}.unit`)}
+                {...register(`fasilitasEmergensi.${emgIndex}.unit`)}
                 type="text"
                 className="rounded border-2"
               />
