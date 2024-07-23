@@ -1,4 +1,4 @@
-import { useFormDataFaskesContext } from "@/components/forms/Data Faskes/formDataFaskesSchema";
+import { useFormDataFaskesContext } from "@/components/forms/Data Faskes/FormDataFaskesSchema";
 import { useFieldArray } from "react-hook-form";
 
 export default function Spesialis() {

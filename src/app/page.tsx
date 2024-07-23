@@ -1,13 +1,10 @@
+import SearchBar from "@/components/search bar/SearchBar";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <main className="w-screen h-screen flex flex-col items-center justify-center">
-      <h1>
-        <Link className="" href={"/content"}>
-          content
-        </Link>
-      </h1>
+      <SearchBar />
       <h1>
         <Link className="" href={"/find"}>
           find
@@ -18,11 +15,6 @@ export default function Home() {
         <h1>
           <Link className="" href={"/admin/new-item"}>
             new item
-          </Link>
-        </h1>
-        <h1>
-          <Link className="" href={"/admin/edit-item"}>
-            edit item
           </Link>
         </h1>
       </div>

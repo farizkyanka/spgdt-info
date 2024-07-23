@@ -1,4 +1,4 @@
-import { FormTypeDataFaskes } from "@/components/forms/Data Faskes/formDataFaskesSchema";
+import { FormTypeDataFaskes } from "@/components/forms/Data Faskes/FormDataFaskesSchema";
 import mongoose, { Document, Schema } from "mongoose";
 
 export interface PayloadType extends FormTypeDataFaskes {

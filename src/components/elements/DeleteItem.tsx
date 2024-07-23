@@ -1,4 +1,5 @@
 "use client";
+import { revalidatePath } from "next/cache";
 import { useParams, useRouter } from "next/navigation";
 
 export default function Page() {
@@ -13,8 +14,8 @@ export default function Page() {
       },
     });
     if (response.ok) {
-      const responseData = await response.json();
-      console.log(responseData, response.status);
+      revalidatePath("/find");
+      revalidatePath(`/content/${id}`);
       router.push("/");
     }
   };

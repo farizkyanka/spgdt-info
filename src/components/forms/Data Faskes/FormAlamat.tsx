@@ -1,4 +1,4 @@
-import { useFormDataFaskesContext } from "@/components/forms/Data Faskes/formDataFaskesSchema";
+import { useFormDataFaskesContext } from "@/components/forms/Data Faskes/FormDataFaskesSchema";
 import { provinsi } from "@/lib/FormProvinsi";
 import { useState } from "react";
 

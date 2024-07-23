@@ -1,6 +1,6 @@
 "use client";
 
-import { useFormDataFaskes } from "@/components/forms/Data Faskes/formDataFaskesSchema";
+import { useFormDataFaskes } from "@/components/forms/Data Faskes/FormDataFaskesSchema";
 import { FormProvider } from "react-hook-form";
 import FormDataEdit from "./FormDataEdit";
 

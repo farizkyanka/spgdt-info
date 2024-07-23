@@ -3,7 +3,7 @@
 import {
   FormTypeDataFaskes,
   useFormDataFaskesContext,
-} from "@/components/forms/Data Faskes/formDataFaskesSchema";
+} from "@/components/forms/Data Faskes/FormDataFaskesSchema";
 import FasilitasDiagnostik from "../../../components/forms/Data Faskes/FormFasilitasDiagnostik";
 import FasilitasTerapi from "../../../components/forms/Data Faskes/FormFasilitasTerapi";
 import FasilitasEmergensi from "../../../components/forms/Data Faskes/FormFasilitasEmergensi";
@@ -11,6 +11,7 @@ import Spesialis from "../../../components/forms/Data Faskes/FormSpesialis";
 import FormRuangRawat from "../../../components/forms/Data Faskes/FormRuangRawat";
 import FormAlamat from "../../../components/forms/Data Faskes/FormAlamat";
 import { useRouter } from "next/navigation";
+import { TipeFaskes } from "../edit-item/[id]/FormDataEdit";
 
 export default function FormDataFaskes() {
   const router = useRouter();
@@ -52,7 +53,18 @@ export default function FormDataFaskes() {
               <label htmlFor="nama faskes">Nama Faskes</label>
               <input {...register("nama faskes")} />
               <label htmlFor="kelas faskes">Kelas Faskes</label>
-              <input {...register("kelas faskes")} />
+              <select
+                className="m-2 p-1 rounded-md"
+                {...register("kelas faskes")}
+              >
+                {TipeFaskes.map((i, index) => {
+                  return (
+                    <option key={index} value={i}>
+                      {i}
+                    </option>
+                  );
+                })}
+              </select>
               <FormAlamat />
               <label htmlFor="nomor spgdt">Nomor SPGDT</label>
               <input type="tel" {...register("nomor spgdt")} />

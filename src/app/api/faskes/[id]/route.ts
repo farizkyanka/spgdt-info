@@ -2,24 +2,26 @@ import dbConnect from "@/lib/dbConnect";
 import Faskes from "@/lib/schema/Faskes";
 
 export async function GET(
-  request: Request,
+  req: Request,
   { params }: { params: { id: string } }
 ) {
   await dbConnect();
-  console.log(params.id);
   const faskes = await Faskes.findById(params.id);
   return Response.json(faskes);
 }
 
 export async function PATCH(
-  request: Request,
+  req: Request,
   { params }: { params: { id: string } }
 ) {
-  return Response.json("message");
+  await dbConnect();
+  const body = await req.json();
+  const faskes = await Faskes.findByIdAndUpdate(params.id, body);
+  return Response.json(faskes);
 }
 
 export async function DELETE(
-  request: Request,
+  req: Request,
   { params }: { params: { id: string } }
 ) {
   await dbConnect();
