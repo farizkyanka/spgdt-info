@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type SearchType = { _id: string; namaFaskes: string }[];
 
@@ -32,21 +33,24 @@ export default function SearchBar() {
   };
 
   return (
-    <search className="w-full lg:w-1/2 m-2 p-2 rounded">
-      <form className="border-2 m-2 rounded shadow" onSubmit={handleSubmit}>
+    <search className="w-full sm:w-3/4 xl:w-1/2 m-2 p-2 rounded">
+      <form className="m-2 rounded-xl z-1" onSubmit={handleSubmit}>
         <input
-          className="w-full h-11 p-2"
+          className="w-full text-center border-2 rounded-lg min-h-18 p-2"
           type="text"
           placeholder="Cari nama faskes, kelas faskes, atau fasilitas yang diinginkan"
           onChange={(e) => handleChange(e)}
         />
       </form>
       {data.length > 0 && prompt.length > 0 && (
-        <ul className="rounded border-2 m-2 p-2 shadow">
+        <ul className="bg-white rounded border-2 m-2 p-2 shadow z-50">
           {data.map((i, index) => {
             return (
-              <li className="p-1 hover:bg-blue-200 rounded" key={index}>
-                {i.namaFaskes}
+              <li
+                className="p-1 hover:bg-blue-200 hover:cursor-pointer rounded"
+                key={index}
+              >
+                <Link href={`/content/${i._id}`}>{i.namaFaskes}</Link>
               </li>
             );
           })}

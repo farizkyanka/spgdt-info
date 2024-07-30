@@ -24,21 +24,23 @@ const schemaDiagnostik = z.array(
 const schemaRuangRawat = z.array(
   z.object({
     ruang: z.string(),
-    jumlah: z.coerce.number(),
+    jumlah: z.coerce.number({ invalid_type_error: "Masukkan nomor saja" }),
   })
 );
 
 export const schemaDataFaskes = z.object({
-  namaFaskes: z.string(),
+  namaFaskes: z.string().min(1, { message: "Masukkan nama faskes" }),
   kelasFaskes: z.string(),
   alamat: z.object({
-    provinsi: z.string(),
-    kotakabupaten: z.string(),
-    kecamatan: z.string(),
-    kelurahan: z.string(),
-    jalan: z.string(),
+    provinsi: z.string({ message: "Provinsi harus dipilih" }),
+    kotakabupaten: z.string({ message: "Kota/Kabupaten harus dipilih" }),
+    kecamatan: z.string({ message: "Kecamatan harus dipilih" }),
+    kelurahan: z.string({ message: "Kelurahan harus dipilih" }),
+    jalan: z.string().min(1, { message: "Jalan harus diisi" }),
   }),
-  nomorSPGDT: z.string(),
+  nomorSPGDT: z
+    .string()
+    .min(9, { message: "Nomor SPGDT harus diisi minimal 9 karakter" }),
   BPJS: z.boolean(),
   fasilitasEmergensi: z.array(z.object({ unit: z.string() })),
   fasilitasTerapi: z.array(z.object({ unit: z.string() })),
@@ -50,11 +52,6 @@ export const schemaDataFaskes = z.object({
 // Form Hook
 
 export type FormTypeDataFaskes = z.infer<typeof schemaDataFaskes>;
-
-// export const useFormDataFaskes = () =>
-//   useForm<FormTypeDataFaskes>({
-//     resolver: zodResolver(schemaDataFaskes),
-//   });
 
 export function useFormDataFaskes(props?: FormTypeDataFaskes) {
   return useForm<FormTypeDataFaskes>({

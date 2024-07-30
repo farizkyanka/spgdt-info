@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav className="w-screen h-14 flex justify-center items-center bg-stone-500">
+        <nav className="w-screen h-14 flex justify-center items-center text-white bg-gray-400">
           <Link
             className="h-full hover:bg-slate-300 flex items-center"
             href={"/"}

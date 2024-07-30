@@ -14,19 +14,23 @@ export default function Spesialis() {
   });
 
   return (
-    <div>
+    <div className="min-w-60 flex flex-col">
       <label>Spesialis</label>
       <ul>
         {fields.map((sp, spIndex) => {
           return (
-            <li key={sp.id}>
+            <li className="m-2 border-b-2 p-2" key={sp.id}>
               <input
                 {...register(`spesialis.${spIndex}.spesialisasi`)}
                 type="text"
-                className="rounded border-2"
+                className="flex-grow rounded-lg mb-2 p-2 border-2 border-blue-200 bg-white"
               />
               <Spesialisasi spIndex={spIndex} />
-              <button type="button" onClick={() => remove(spIndex)}>
+              <button
+                className="ml-2 p-2 place-self-center rounded bg-cyan-400 text-white"
+                type="button"
+                onClick={() => remove(spIndex)}
+              >
                 remove
               </button>
             </li>
@@ -34,6 +38,7 @@ export default function Spesialis() {
         })}
       </ul>
       <button
+        className="ml-2 p-2 place-self-center rounded bg-cyan-400 text-white"
         type="button"
         onClick={() => append({ spesialisasi: "", sub: [] })}
       >
@@ -56,25 +61,33 @@ const Spesialisasi = ({ spIndex }: { spIndex: number }) => {
   });
 
   return (
-    <div>
+    <div className="m-2 p-2 border-2 rounded-md">
       <label>Subspesialis</label>
       <ul>
         {fields.map((unit, unitIndex) => {
           return (
-            <li key={unit.id}>
+            <li key={unit.id} className="flex">
               <input
                 {...register(`spesialis.${spIndex}.sub.${unitIndex}.sub`)}
                 type="text"
-                className="rounded border-2"
+                className="rounded-lg flex-shrink mb-2 p-2 border-2 border-blue-200 bg-white"
               />
-              <button type="button" onClick={() => remove(unitIndex)}>
+              <button
+                className="ml-2 p-2 place-self-center rounded bg-cyan-400 text-white"
+                type="button"
+                onClick={() => remove(unitIndex)}
+              >
                 remove
               </button>
             </li>
           );
         })}
       </ul>
-      <button type="button" onClick={() => append({ sub: "" })}>
+      <button
+        className="ml-2 p-2 place-self-center rounded bg-cyan-400 text-white"
+        type="button"
+        onClick={() => append({ sub: "" })}
+      >
         tambah subspesialis
       </button>
     </div>

@@ -6,7 +6,6 @@ export default function FormAlamat() {
   const {
     register,
     formState: { errors },
-    handleSubmit,
   } = useFormDataFaskesContext();
 
   const [kota, setKota] = useState([
@@ -74,7 +73,10 @@ export default function FormAlamat() {
   return (
     <>
       <label htmlFor="alamat">Alamat Faskes</label>
-      <select {...register("alamat.provinsi")} className="m-2 p-1 rounded-md">
+      <select
+        {...register("alamat.provinsi")}
+        className="rounded-lg w-full mb-2 p-2 border-2 border-blue-200 bg-white"
+      >
         {provinsi.map((i, index) => {
           return (
             <option
@@ -87,9 +89,12 @@ export default function FormAlamat() {
           );
         })}
       </select>
+      {errors.alamat?.provinsi && (
+        <h6 className="text-red-500">{errors.alamat.provinsi.message}</h6>
+      )}
       <select
         {...register("alamat.kotakabupaten")}
-        className="m-2 p-1 rounded-md"
+        className="rounded-lg w-full mb-2 p-2 border-2 border-blue-200 bg-white"
       >
         {kota.map((i, index) => {
           return (
@@ -105,7 +110,13 @@ export default function FormAlamat() {
           );
         })}
       </select>
-      <select {...register("alamat.kecamatan")} className="m-2 p-1 rounded-md">
+      {errors.alamat?.kotakabupaten && (
+        <h6 className="text-red-500">{errors.alamat.kotakabupaten.message}</h6>
+      )}
+      <select
+        {...register("alamat.kecamatan")}
+        className="rounded-lg w-full mb-2 p-2 border-2 border-blue-200 bg-white"
+      >
         {kecamatan.map((i, index) => {
           return (
             <option
@@ -120,7 +131,13 @@ export default function FormAlamat() {
           );
         })}
       </select>
-      <select {...register("alamat.kelurahan")} className="m-2 p-1 rounded-md">
+      {errors.alamat?.kecamatan && (
+        <h6 className="text-red-500">{errors.alamat.kecamatan.message}</h6>
+      )}
+      <select
+        {...register("alamat.kelurahan")}
+        className="rounded-lg w-full mb-2 p-2 border-2 border-blue-200 bg-white"
+      >
         {kelurahan.map((i, index) => {
           return (
             <option key={index} value={i.name}>
@@ -130,10 +147,13 @@ export default function FormAlamat() {
         })}
       </select>
       <input
-        className="m-2 p-1 rounded-md"
+        className="rounded-lg w-full mb-2 p-2 border-2 border-blue-200"
         {...register("alamat.jalan")}
-        placeholder="Jalan"
+        placeholder="Ketikkan jalan"
       />
+      {errors.alamat?.jalan && (
+        <h6 className="text-red-500">{errors.alamat.jalan.message}</h6>
+      )}
     </>
   );
 }

@@ -7,6 +7,7 @@ import {
 import FasilitasDiagnostik from "@/components/forms/Data Faskes/FormFasilitasDiagnostik";
 import FasilitasEmergensi from "@/components/forms/Data Faskes/FormFasilitasEmergensi";
 import FasilitasTerapi from "@/components/forms/Data Faskes/FormFasilitasTerapi";
+import FormFaskesField from "@/components/forms/Data Faskes/FormFaskesField";
 import FormIdFaskes from "@/components/forms/Data Faskes/FormIdFaskes";
 import Spesialis from "@/components/forms/Data Faskes/FormSpesialis";
 import { useRouter, useParams } from "next/navigation";
@@ -59,21 +60,7 @@ export default function FormDataFaskes() {
               submitform(data);
             })}
           >
-            <fieldset className="flex flex-row justify-evenly border-2 p-2">
-              <legend>Data Faskes</legend>
-              <FormIdFaskes />
-            </fieldset>
-            <fieldset className="flex flex-col border-2 p-2">
-              <legend>Fasilitas Faskes</legend>
-              <div className="m-2 flex justify-evenly">
-                <FasilitasEmergensi />
-                <FasilitasTerapi />
-              </div>
-              <div className="m-2 flex justify-evenly">
-                <FasilitasDiagnostik />
-                <Spesialis />
-              </div>
-            </fieldset>
+            <FormFaskesField />
             <button type="submit">Submit</button>
           </form>
         </section>

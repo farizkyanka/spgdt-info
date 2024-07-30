@@ -7,13 +7,15 @@ export default async function Page() {
       method: "GET",
       "content-type": "application/json",
     },
-    next: { revalidate: 0 },
   });
   const data: PayloadType[] = await response.json();
 
   return (
-    <main className="w-screen flex justify-center">
-      <div className="container max-w-screen-2xl m-2 p-2 rounded-xl shadow-[0px_16px_16px_0px_#0000004d]">
+    <main className="flex justify-center flex-wrap items-center flex-col">
+      <section className="m-2 bg-slate-100 w-full max-w-screen-xl h-20 shadow-xl">
+        text
+      </section>
+      <section className="max-w-screen-xl m-2 p-2 rounded-xl shadow-[0px_16px_16px_0px_#0000004d]">
         {data.map((unit, index) => (
           <div
             key={index}
@@ -91,7 +93,7 @@ export default async function Page() {
             </div>
           </div>
         ))}
-      </div>
+      </section>
     </main>
   );
 }

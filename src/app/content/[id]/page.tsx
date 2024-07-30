@@ -2,7 +2,6 @@ import { RiVerifiedBadgeFill } from "react-icons/ri";
 import Link from "next/link";
 import { PayloadType } from "@/lib/schema/Faskes";
 import DeleteItem from "@/components/elements/DeleteItem";
-import next from "next";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const response = await fetch(
@@ -37,8 +36,13 @@ export default async function Page({ params }: { params: { id: string } }) {
               )}
             </p>
           </div>
-          <div className="flex flex-shrink">
-            <Link href={`/admin/edit-item/${params.id}`}>Edit</Link>
+          <div className="flex">
+            <Link
+              className="m-2 p-2 rounded bg-cyan-400 place-self-center text-white"
+              href={`/admin/edit-item/${params.id}`}
+            >
+              Edit
+            </Link>
             <DeleteItem />
           </div>
         </section>

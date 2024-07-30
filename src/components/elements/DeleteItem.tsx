@@ -20,5 +20,12 @@ export default function Page() {
     }
   };
 
-  return <button onClick={handleDelete}>Delete</button>;
+  return (
+    <button
+      className="m-2 p-2 rounded bg-cyan-400 place-self-center text-white"
+      onClick={handleDelete}
+    >
+      Delete
+    </button>
+  );
 }

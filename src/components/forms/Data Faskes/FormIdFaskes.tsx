@@ -21,11 +21,20 @@ export default function FormIdFaskes() {
 
   return (
     <>
-      <div className="flex flex-col md:w-1/2">
+      <div className="flex flex-col justify-between p-4 text-lg">
         <label htmlFor="nama faskes">Nama Faskes</label>
-        <input {...register("namaFaskes")} />
+        <input
+          {...register("namaFaskes")}
+          className="border-2 w-full rounded-lg border-blue-200 mb-2 p-2"
+        />
+        {errors.namaFaskes && (
+          <h6 className="text-red-500">{errors.namaFaskes.message}</h6>
+        )}
         <label htmlFor="kelas faskes">Kelas Faskes</label>
-        <select className="m-2 p-1 rounded-md" {...register("kelasFaskes")}>
+        <select
+          {...register("kelasFaskes")}
+          className="rounded-lg w-full mb-2 p-2 border-2 border-blue-200 bg-white"
+        >
           {TipeFaskes.map((i, index) => {
             return (
               <option key={index} value={i}>
@@ -33,14 +42,36 @@ export default function FormIdFaskes() {
               </option>
             );
           })}
+          {errors.kelasFaskes && (
+            <h6 className="text-red-500">{errors.kelasFaskes.message}</h6>
+          )}
         </select>
         <FormAlamat />
-        <label htmlFor="nomor spgdt">Nomor SPGDT</label>
-        <input type="tel" {...register("nomorSPGDT")} />
-        <label htmlFor="BPJS">BPJS</label>
-        <input type="checkbox" {...register("BPJS")} />
+        <div className="flex">
+          <label htmlFor="nomor spgdt" className="place-self-center">
+            Nomor SPGDT
+          </label>
+          <input
+            type="tel"
+            {...register("nomorSPGDT")}
+            className="ml-2 w-full border-2 p-2 border-blue-200 rounded-md"
+          />
+        </div>
+        {errors.nomorSPGDT && (
+          <h6 className="text-red-500">{errors.nomorSPGDT.message}</h6>
+        )}
+        <div className="flex">
+          <label htmlFor="BPJS" className="place-self-center">
+            BPJS
+          </label>
+          <input
+            type="checkbox"
+            {...register("BPJS")}
+            className="m-2 h-8 w-8 border-2 rounded-md"
+          />
+        </div>
       </div>
-      <div className="md:w-1/2">
+      <div className="p-4">
         <FormRuangRawat />
       </div>
     </>
