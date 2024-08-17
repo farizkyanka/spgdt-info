@@ -4,12 +4,7 @@ import {
   FormTypeDataFaskes,
   useFormDataFaskesContext,
 } from "@/components/forms/Data Faskes/FormDataFaskesSchema";
-import FasilitasDiagnostik from "../../../components/forms/Data Faskes/FormFasilitasDiagnostik";
-import FasilitasTerapi from "../../../components/forms/Data Faskes/FormFasilitasTerapi";
-import FasilitasEmergensi from "../../../components/forms/Data Faskes/FormFasilitasEmergensi";
-import Spesialis from "../../../components/forms/Data Faskes/FormSpesialis";
 import { useRouter } from "next/navigation";
-import FormIdFaskes from "@/components/forms/Data Faskes/FormIdFaskes";
 import FormFaskesField from "@/components/forms/Data Faskes/FormFaskesField";
 
 export default function FormDataFaskes() {
@@ -23,19 +18,19 @@ export default function FormDataFaskes() {
   const submitform = async (data: FormTypeDataFaskes) => {
     const sendData = JSON.stringify(data);
     console.log(data);
-    // try {
-    //   const response = await fetch("/api/faskes", {
-    //     method: "POST",
-    //     headers: { "content-type": "application/json" },
-    //     body: sendData,
-    //   });
+    try {
+      const response = await fetch("/api/faskes", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: sendData,
+      });
 
-    //   if (response.ok) {
-    //     return router.push("/");
-    //   }
-    // } catch (e) {
-    //   throw new Error("error");
-    // }
+      if (response.ok) {
+        return router.push("/");
+      }
+    } catch (e) {
+      throw new Error("error");
+    }
   };
 
   return (

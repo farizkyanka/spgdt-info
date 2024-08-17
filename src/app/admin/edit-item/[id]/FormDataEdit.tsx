@@ -4,12 +4,7 @@ import {
   FormTypeDataFaskes,
   useFormDataFaskesContext,
 } from "@/components/forms/Data Faskes/FormDataFaskesSchema";
-import FasilitasDiagnostik from "@/components/forms/Data Faskes/FormFasilitasDiagnostik";
-import FasilitasEmergensi from "@/components/forms/Data Faskes/FormFasilitasEmergensi";
-import FasilitasTerapi from "@/components/forms/Data Faskes/FormFasilitasTerapi";
 import FormFaskesField from "@/components/forms/Data Faskes/FormFaskesField";
-import FormIdFaskes from "@/components/forms/Data Faskes/FormIdFaskes";
-import Spesialis from "@/components/forms/Data Faskes/FormSpesialis";
 import { useRouter, useParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 

@@ -33,8 +33,8 @@ export default function SearchBar() {
   };
 
   return (
-    <search className="w-full sm:w-3/4 xl:w-1/2 m-2 p-2 rounded">
-      <form className="m-2 rounded-xl z-1" onSubmit={handleSubmit}>
+    <>
+      <form className="rounded-xl z-1" onSubmit={handleSubmit}>
         <input
           className="w-full text-center border-2 rounded-lg min-h-18 p-2"
           type="text"
@@ -43,7 +43,7 @@ export default function SearchBar() {
         />
       </form>
       {data.length > 0 && prompt.length > 0 && (
-        <ul className="bg-white rounded border-2 m-2 p-2 shadow z-50">
+        <ul className="bg-white rounded border-2 m-2 p-2 shadow z-50 absolute">
           {data.map((i, index) => {
             return (
               <li
@@ -56,6 +56,6 @@ export default function SearchBar() {
           })}
         </ul>
       )}
-    </search>
+    </>
   );
 }

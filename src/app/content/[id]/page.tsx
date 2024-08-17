@@ -6,8 +6,9 @@ import DeleteItem from "@/components/elements/DeleteItem";
 export default async function Page({ params }: { params: { id: string } }) {
   const response = await fetch(
     `http://localhost:3000/api/faskes/${params.id}`,
-    { next: { revalidate: 0 } }
+    { next: { revalidate: 60 } }
   );
+
   if (!response.ok) throw new Error("failed to fetch data");
   const faskes = await response.json();
   const payload: PayloadType = faskes;
