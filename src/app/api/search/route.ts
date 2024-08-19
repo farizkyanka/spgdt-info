@@ -20,7 +20,10 @@ export async function GET(req: Request) {
     "alamat.provinsi": { $regex: provinsi, $options: "i" },
     "alamat.kotakabupaten": { $regex: kotakabupaten, $options: "i" },
     spesialis: {
-      $elemMatch: { spesialisasi: { $regex: spesialis, $options: "i" } },
+      $elemMatch: {
+        spesialisasi: { $regex: spesialis, $options: "i" },
+        // sub: { $elemMatch: { sub: { $regex: subspesialis, $options: "i" } } },
+      },
     },
     kelasFaskes: { $regex: kelasFaskes, $options: "i" },
     fasilitasEmergensi: {
@@ -29,11 +32,13 @@ export async function GET(req: Request) {
     fasilitasTerapi: {
       $elemMatch: { unit: { $regex: fasilitasTerapi, $options: "i" } },
     },
-    // fasilitasDiagnostik: {
-    //   $elemMatch: {
-    //     unit: { $elemMatch: { $regex: fasilitasDiagnostik, $options: "i" } },
-    //   },
-    // },
+    fasilitasDiagnostik: {
+      $elemMatch: {
+        unit: {
+          $elemMatch: { unit: { $regex: fasilitasDiagnostik, $options: "i" } },
+        },
+      },
+    },
     ruangRawat: {
       $elemMatch: { ruang: { $regex: ruangRawat, $options: "i" } },
     },

@@ -1,14 +1,33 @@
-import { PayloadType } from "@/lib/schema/Faskes";
-import Link from "next/link";
+"use client";
 
-export default async function Page() {
-  const response = await fetch("http://localhost:3000/api/faskes", {
-    headers: {
-      method: "GET",
-      "content-type": "application/json",
-    },
-  });
-  const data: PayloadType[] = await response.json();
+import { FormTypeDataFaskes } from "@/components/forms/Data Faskes/FormDataFaskesSchema";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import useSWR from "swr";
+import { PayloadType } from "@/lib/schema/Faskes";
+
+export default function Page() {
+  const params = useSearchParams().toString();
+
+  async function fetchData() {
+    const response = await fetch(`http://localhost:3000/api/search?${params}`, {
+      headers: {
+        method: "GET",
+        "content-type": "application/json",
+      },
+      next: { revalidate: 0 },
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  const { data, error, isLoading } = useSWR<PayloadType[]>(
+    "/api/search",
+    fetchData
+  );
+
+  if (isLoading) return <h5 className="text-center mt-5">loading...</h5>;
+  if (error) return <h6>error</h6>;
 
   return (
     <main className="flex justify-center flex-wrap items-center flex-col">
@@ -16,7 +35,7 @@ export default async function Page() {
         text
       </section>
       <section className="max-w-screen-xl m-2 p-2 rounded-xl shadow-[0px_16px_16px_0px_#0000004d]">
-        {data.map((unit, index) => (
+        {data?.map((unit, index) => (
           <div
             key={index}
             className="m-2 rounded-xl border-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6"

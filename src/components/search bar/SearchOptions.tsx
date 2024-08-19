@@ -1,13 +1,8 @@
 import { provinsi } from "@/lib/FormProvinsi";
 import { TipeFaskes } from "../forms/Data Faskes/FormIdFaskes";
 import { listRuangRawat } from "./AdvancedSearch";
-import { useFormSearchOptionsContext } from "./SearchBarSchema";
 
 export default function SearchOptions() {
-  const {
-    register,
-    formState: { errors },
-  } = useFormSearchOptionsContext();
   return (
     <>
       <fieldset className="p-2 flex flex-wrap justify-around">
@@ -15,12 +10,8 @@ export default function SearchOptions() {
           <label htmlFor="provinsi" className="m-2">
             Provinsi
           </label>
-          <select
-            {...register("provinsi")}
-            name="provinsi"
-            className="p-1 rounded"
-          >
-            {provinsi.map((i, index) => {
+          <select name="provinsi" className="p-1 rounded">
+            {provinsi.map((i) => {
               return (
                 <option key={i.id} value={i.name}>
                   {i.name}
@@ -33,11 +24,7 @@ export default function SearchOptions() {
           <label htmlFor="kotakabupaten" className="m-2">
             Kota/Kabupaten
           </label>
-          <select
-            {...register("kotakabupaten")}
-            name="kotakabupaten"
-            className="p-1 rounded"
-          >
+          <select name="kotakabupaten" className="p-1 rounded">
             <option value={""}>blank</option>
           </select>
         </div>
@@ -45,7 +32,7 @@ export default function SearchOptions() {
       <fieldset className="p-2 flex justify-around">
         <fieldset className="flex flex-col">
           <label htmlFor="kelasFaskes">Kelas Faskes</label>
-          <select {...register("kelasFaskes")} className="m-1 p-1 rounded">
+          <select name="kelasFaskes" className="m-1 p-1 rounded">
             {TipeFaskes.map((i, index) => {
               return (
                 <option key={index} id={i} value={i}>
@@ -57,7 +44,7 @@ export default function SearchOptions() {
         </fieldset>
         <fieldset className="flex flex-col">
           <h6>Ruang Rawat</h6>
-          <select {...register("ruangRawat")} className="m-1 p-1 rounded">
+          <select name="ruangRawat" className="m-1 p-1 rounded">
             {listRuangRawat.map((i, index) => {
               return (
                 <option key={index} id={i} value={i}>
@@ -76,7 +63,7 @@ export default function SearchOptions() {
             type="text"
             className="m-2 p-1 border-2 rounded"
             placeholder="test"
-            {...register("fasilitasTerapi")}
+            name="fasilitasTerapi"
           />
         </div>
         <div>
@@ -85,7 +72,7 @@ export default function SearchOptions() {
             type="text"
             className="m-2 p-1 border-2 rounded"
             placeholder="test"
-            {...register("fasilitasDiagnostik")}
+            name="fasilitasDiagnostik"
           />
         </div>
         <div>
@@ -94,7 +81,7 @@ export default function SearchOptions() {
             type="text"
             className="m-2 p-1 border-2 rounded"
             placeholder="test"
-            {...register("fasilitasEmergensi")}
+            name="fasilitasEmergensi"
           />
         </div>
       </fieldset>
@@ -105,7 +92,7 @@ export default function SearchOptions() {
             type="text"
             className="m-2 p-1 border-2 rounded"
             placeholder="test"
-            {...register("spesialis")}
+            name="spesialis"
           />
         </div>
         <div className="flex place-items-center">
@@ -114,7 +101,7 @@ export default function SearchOptions() {
             type="text"
             className="m-2 p-1 border-2 rounded"
             placeholder="test"
-            {...register("subspesialis")}
+            name="subspesialis"
           />
         </div>
       </fieldset>

@@ -1,11 +1,10 @@
 import AdvancedSearch from "@/components/search bar/AdvancedSearch";
-import AdvancedSearchField from "@/components/search bar/AdvancedSearchField";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <main className="md:w-screen md:h-screen flex flex-col justify-center items-center">
-      <AdvancedSearchField />
+      <AdvancedSearch />
       <h1>
         <Link className="" href={"/find"}>
           find

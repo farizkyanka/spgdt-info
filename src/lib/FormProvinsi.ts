@@ -3,7 +3,7 @@ export type provinsiType = { id: string; name: string }[];
 export const provinsi: provinsiType = [
   {
     id: "",
-    name: "-pilih provinsi-",
+    name: "",
   },
   {
     id: "11",

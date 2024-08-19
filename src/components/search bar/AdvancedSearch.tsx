@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { useFormSearchOptionsContext } from "./SearchBarSchema";
 import SearchBar from "./SearchBar";
 import SearchOptions from "./SearchOptions";
 
@@ -18,16 +17,11 @@ export const listRuangRawat = [
 export default function AdvancedSearch() {
   const [toggleCat, setToggleCat] = useState(false);
 
-  const { handleSubmit } = useFormSearchOptionsContext();
-
   return (
     <search className="flex flex-col w-full border-2 sm:w-3/4 2xl:w-1/2 m-2 p-2 rounded-xl">
       {!toggleCat && <SearchBar />}
       {toggleCat && (
-        <form
-          className="flex flex-col p-2 rounded-xl z-1"
-          onSubmit={handleSubmit((data) => console.log(data))}
-        >
+        <form className="flex flex-col p-2 rounded-xl z-1" action="/find">
           <SearchOptions />
           <button type="submit">submit</button>
         </form>
