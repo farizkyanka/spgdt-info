@@ -2,8 +2,11 @@ import { RiVerifiedBadgeFill } from "react-icons/ri";
 import Link from "next/link";
 import { PayloadType } from "@/lib/schema/Faskes";
 import DeleteItem from "@/components/elements/DeleteItem";
+import { validateRequest } from "@/lib/auth";
 
 export default async function Page({ params }: { params: { id: string } }) {
+  const { user } = await validateRequest();
+
   const response = await fetch(
     `http://localhost:3000/api/faskes/${params.id}`,
     { next: { revalidate: 60 } }
@@ -37,15 +40,17 @@ export default async function Page({ params }: { params: { id: string } }) {
               )}
             </p>
           </div>
-          <div className="flex">
-            <Link
-              className="m-2 p-2 rounded bg-cyan-400 place-self-center text-white"
-              href={`/admin/edit-item/${params.id}`}
-            >
-              Edit
-            </Link>
-            <DeleteItem />
-          </div>
+          {user !== null && (
+            <div className="flex">
+              <Link
+                className="m-2 p-2 rounded bg-cyan-400 place-self-center text-white"
+                href={`/admin/edit-item/${params.id}`}
+              >
+                Edit
+              </Link>
+              <DeleteItem />
+            </div>
+          )}
         </section>
         <section className="m-2 p-2 border-slate-400 border-b-2 flex justify-center">
           <div className="container max-w-screen-xl grid md:grid-cols-2">
