@@ -8,7 +8,7 @@ export default function Page() {
   const id = params.id;
   const handleDelete = async () => {
     const response = await fetch(
-      `http://localhost:${process.env.NEXT_PUBLIC_PORT!}/api/faskes/${id}`,
+      `${process.env.NEXT_PUBLIC_API}/api/faskes/${id}`,
       {
         method: "DELETE",
         headers: {

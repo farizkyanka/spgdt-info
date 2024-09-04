@@ -12,10 +12,9 @@ export default function SearchBar() {
   const [data, setData] = useState<SearchType>([]);
 
   const handleFetch = async () => {
-    console.log(process.env.$PORT!);
+    console.log(process.env.NEXT_PUBLIC_API!);
     const response = await fetch(
-      `http://localhost:${process.env
-        .NEXT_PUBLIC_PORT!}/api/search?query=${prompt}`
+      `${process.env.NEXT_PUBLIC_API}/api/search?query=${prompt}`
     );
     if (response.ok) {
       const data = await response.json();

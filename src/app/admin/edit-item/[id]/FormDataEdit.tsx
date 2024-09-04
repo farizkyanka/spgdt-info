@@ -21,9 +21,7 @@ export default function FormDataFaskes() {
 
   const resetAsyncForm = useCallback(async () => {
     const result = await fetch(
-      `http://localhost:${process.env.NEXT_PUBLIC_PORT!}/api/faskes/${
-        params.id
-      }`
+      `${process.env.NEXT_PUBLIC_API}/faskes/${params.id}`
     );
     try {
       if (!result.ok) return null;
