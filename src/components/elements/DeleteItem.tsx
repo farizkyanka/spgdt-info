@@ -7,12 +7,15 @@ export default function Page() {
   const router = useRouter();
   const id = params.id;
   const handleDelete = async () => {
-    const response = await fetch(`http://localhost:3000/api/faskes/${id}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `http://localhost:${process.env.$PORT!}/api/faskes/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    );
     if (response.ok) {
       revalidatePath("/find");
       revalidatePath(`/content/${id}`);
