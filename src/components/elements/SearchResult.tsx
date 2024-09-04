@@ -12,13 +12,16 @@ export default function SearchResult() {
   const params = useSearchParams().toString();
 
   async function fetchData() {
-    const response = await fetch(`http://localhost:3000/api/search?${params}`, {
-      headers: {
-        method: "GET",
-        "content-type": "application/json",
-      },
-      next: { revalidate: 0 },
-    });
+    const response = await fetch(
+      `http://localhost:${process.env.$PORT!}/api/search?${params}`,
+      {
+        headers: {
+          method: "GET",
+          "content-type": "application/json",
+        },
+        next: { revalidate: 0 },
+      }
+    );
     const data = await response.json();
     return data;
   }
