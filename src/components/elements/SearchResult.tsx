@@ -13,7 +13,7 @@ export default function SearchResult() {
 
   async function fetchData() {
     const response = await fetch(
-      `http://localhost:${process.env.PORT!}/api/search?${params}`,
+      `http://localhost:${process.env.NEXT_PUBLIC_PORT!}/api/search?${params}`,
       {
         headers: {
           method: "GET",

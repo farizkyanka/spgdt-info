@@ -9,7 +9,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   const { user } = await validateRequest();
 
   const response = await fetch(
-    `http://localhost:${process.env.PORT!}/api/faskes/${params.id}`,
+    `http://localhost:${process.env.NEXT_PUBLIC_PORT!}/api/faskes/${params.id}`,
     { next: { revalidate: 0 } }
   );
 

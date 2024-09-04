@@ -14,7 +14,8 @@ export default function SearchBar() {
   const handleFetch = async () => {
     console.log(process.env.$PORT!);
     const response = await fetch(
-      `http://localhost:${process.env.PORT!}/api/search?query=${prompt}`
+      `http://localhost:${process.env
+        .NEXT_PUBLIC_PORT!}/api/search?query=${prompt}`
     );
     if (response.ok) {
       const data = await response.json();
