@@ -6,6 +6,7 @@ import {
 } from "@/components/forms/Data Faskes/FormDataFaskesSchema";
 import { useRouter } from "next/navigation";
 import FormFaskesField from "@/components/forms/Data Faskes/FormFaskesField";
+import { ReactHTMLElement } from "react";
 
 export default function FormDataFaskes() {
   const router = useRouter();
@@ -17,7 +18,6 @@ export default function FormDataFaskes() {
 
   const submitform = async (data: FormTypeDataFaskes) => {
     const sendData = JSON.stringify(data);
-    console.log(data);
     try {
       const response = await fetch("/api/faskes", {
         method: "POST",
@@ -34,12 +34,18 @@ export default function FormDataFaskes() {
   };
 
   return (
-    <main className="flex justify-center">
-      <section className="w-full m-2 p-2 max-w-screen-lg rounded-lg shadow-xl">
+    <main className="flex pt-20 justify-center">
+      <section className="w-full bg-white m-2 p-2 max-w-screen-lg rounded-lg shadow-xl">
         <form
+          className="flex flex-col"
           onSubmit={handleSubmit((data) => {
             submitform(data);
           })}
+          onKeyDown={(e: any) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+            }
+          }}
         >
           <FormFaskesField />
           <button

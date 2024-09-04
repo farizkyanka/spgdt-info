@@ -17,6 +17,7 @@ export interface IFaskes extends Document {
   };
   nomorSPGDT: string;
   BPJS: boolean;
+  situsWeb: string;
   fasilitasEmergensi: [{ unit: string }];
   spesialis: [
     {
@@ -46,6 +47,7 @@ const faskesSchema: Schema<IFaskes> = new mongoose.Schema({
   },
   nomorSPGDT: { type: String, required: true },
   BPJS: { type: Boolean, required: true },
+  situsWeb: { type: String },
   fasilitasEmergensi: [{ unit: String }],
   spesialis: [
     {

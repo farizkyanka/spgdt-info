@@ -10,6 +10,7 @@ export async function GET() {
 export async function POST(req: Request) {
   await dbConnect();
   const body = await req.json();
+  console.log(body);
   const faskesData = new Faskes(body);
   const dbResponse = await faskesData.save();
   return Response.json(dbResponse);

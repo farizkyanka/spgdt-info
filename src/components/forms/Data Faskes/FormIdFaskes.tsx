@@ -61,6 +61,16 @@ export default function FormIdFaskes() {
           <h6 className="text-red-500">{errors.nomorSPGDT.message}</h6>
         )}
         <div className="flex">
+          <label htmlFor="nomor spgdt" className="place-self-center">
+            Situs Resmi
+          </label>
+          <input
+            {...register("situsWeb")}
+            className="border-2 w-full rounded-lg border-blue-200 mb-2 p-2"
+          />
+        </div>
+
+        <div className="flex">
           <label htmlFor="BPJS" className="place-self-center">
             BPJS
           </label>

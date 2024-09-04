@@ -3,13 +3,14 @@ import Link from "next/link";
 import { PayloadType } from "@/lib/schema/Faskes";
 import DeleteItem from "@/components/elements/DeleteItem";
 import { validateRequest } from "@/lib/auth";
+import RegularButton from "@/components/elements/RegularButton";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const { user } = await validateRequest();
 
   const response = await fetch(
     `http://localhost:3000/api/faskes/${params.id}`,
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 0 } }
   );
 
   if (!response.ok) throw new Error("failed to fetch data");
@@ -17,8 +18,8 @@ export default async function Page({ params }: { params: { id: string } }) {
   const payload: PayloadType = faskes;
 
   return (
-    <main className="max-w-screen m-2 flex justify-center">
-      <div className="max-w-screen-xl rounded-xl border-2 border-black-100">
+    <main className="max-w-screen pt-20 flex justify-center">
+      <div className="max-w-screen-xl bg-white rounded-xl border-2 border-black-100 shadow-xl">
         <section className="m-2 border-slate-400 border-b-2 flex justify-center">
           <div className="p-2 container max-w-screen-xl">
             <h1 className="text-3xl">{payload["namaFaskes"]}</h1>
@@ -39,14 +40,25 @@ export default async function Page({ params }: { params: { id: string } }) {
                 "tidak"
               )}
             </p>
+            <h1>
+              Situs resmi:{" "}
+              <a
+                className="text-cyan-500"
+                target="_blank"
+                href={payload.situsWeb}
+                rel="noopener noreferrer"
+              >
+                {payload.situsWeb}
+              </a>
+            </h1>
           </div>
           {user !== null && (
             <div className="flex">
               <Link
-                className="m-2 p-2 rounded bg-cyan-400 place-self-center text-white"
+                className="m-2 p-2 rounded place-self-center text-white"
                 href={`/admin/edit-item/${params.id}`}
               >
-                Edit
+                <RegularButton>Edit</RegularButton>
               </Link>
               <DeleteItem />
             </div>
@@ -108,7 +120,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             </ul>
           </div>
         </section>
-        <section className="m-2 p-2 border-slate-400 border-b-2">
+        <section className="m-2 p-2 border-slate-400">
           <h1 className="text-3xl">Spesialisasi</h1>
           <div className="flex flex-row flex-wrap">
             {payload.spesialis.map((item, index) => (

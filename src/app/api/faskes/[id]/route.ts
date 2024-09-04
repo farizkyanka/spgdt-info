@@ -16,6 +16,7 @@ export async function PATCH(
 ) {
   await dbConnect();
   const body = await req.json();
+  console.log(body);
   const faskes = await Faskes.findByIdAndUpdate(params.id, body);
   return Response.json(faskes);
 }

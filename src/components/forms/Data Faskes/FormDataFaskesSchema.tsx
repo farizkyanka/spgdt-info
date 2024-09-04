@@ -42,6 +42,7 @@ export const schemaDataFaskes = z.object({
     .string()
     .min(9, { message: "Nomor SPGDT harus diisi minimal 9 karakter" }),
   BPJS: z.boolean(),
+  situsWeb: z.string(),
   fasilitasEmergensi: z.array(z.object({ unit: z.string() })),
   fasilitasTerapi: z.array(z.object({ unit: z.string() })),
   spesialis: schemaSpesialis,

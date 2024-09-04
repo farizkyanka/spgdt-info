@@ -1,5 +1,6 @@
 "use client";
 
+import SubmitButton from "@/components/elements/SubmitButton";
 import {
   FormTypeDataFaskes,
   useFormDataFaskesContext,
@@ -12,7 +13,11 @@ export default function FormDataFaskes() {
   const router = useRouter();
   const params = useParams<{ id: string }>();
   const [isLoading, setIsLoading] = useState(true);
-  const { handleSubmit, reset } = useFormDataFaskesContext();
+  const {
+    handleSubmit,
+    reset,
+    formState: { isSubmitting },
+  } = useFormDataFaskesContext();
 
   const resetAsyncForm = useCallback(async () => {
     const result = await fetch(`http://localhost:3000/api/faskes/${params.id}`);
@@ -45,18 +50,25 @@ export default function FormDataFaskes() {
   };
 
   if (isLoading) {
-    return <div className="text-center">loading form...</div>;
+    return <div className="text-center pt-20">loading form...</div>;
   } else if (!isLoading)
     return (
-      <main className="flex justify-center">
-        <section className="w-full m-2 p-2 max-w-screen-lg rounded-lg border-2">
+      <main className="flex justify-center pt-20">
+        <section className="w-full bg-white m-4 p-2 max-w-screen-lg rounded-lg border-2">
           <form
+            className="flex flex-col"
             onSubmit={handleSubmit((data) => {
               submitform(data);
             })}
           >
             <FormFaskesField />
-            <button type="submit">Submit</button>
+            <button
+              disabled={isSubmitting}
+              type="submit"
+              className=" m-2 p-2 text-xl text-white rounded bg-cyan-400"
+            >
+              {isSubmitting ? "Submitting..." : "Submit"}
+            </button>
           </form>
         </section>
       </main>

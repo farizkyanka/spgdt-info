@@ -1,6 +1,13 @@
+import { validateRequest } from "@/lib/auth";
 import { signup } from "./action";
+import { redirect } from "next/navigation";
 
 export default async function Page() {
+  const { user } = await validateRequest();
+  if (!user) {
+    return redirect("/");
+  }
+
   return (
     <>
       <h1>Create an account</h1>
