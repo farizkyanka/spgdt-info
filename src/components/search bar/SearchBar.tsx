@@ -12,7 +12,6 @@ export default function SearchBar() {
   const [data, setData] = useState<SearchType>([]);
 
   const handleFetch = async () => {
-    console.log(process.env.NEXT_PUBLIC_API!);
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API}/api/search?query=${prompt}`
     );

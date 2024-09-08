@@ -4,6 +4,7 @@ import { PayloadType } from "@/lib/schema/Faskes";
 import DeleteItem from "@/components/elements/DeleteItem";
 import { validateRequest } from "@/lib/auth";
 import RegularButton from "@/components/elements/RegularButton";
+import dateFormatter from "@/lib/dateFormatter";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const { user } = await validateRequest();
@@ -19,7 +20,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   return (
     <main className="max-w-screen pt-20 flex justify-center">
-      <div className="max-w-screen-xl bg-white rounded-xl border-2 border-black-100 shadow-xl">
+      <div className="max-w-screen-xl bg-white rounded-xl border-2 border-black-100 shadow-xl mb-8">
         <section className="m-2 border-slate-400 border-b-2 flex justify-center">
           <div className="p-2 container max-w-screen-xl">
             <h1 className="text-3xl">{payload["namaFaskes"]}</h1>
@@ -139,6 +140,9 @@ export default async function Page({ params }: { params: { id: string } }) {
             ))}
           </div>
         </section>
+        <h1 className="m-4 text-end italic text-slate-300">
+          {`pembaruan terakhir: ${dateFormatter(payload.recentlyUpdated)}`}
+        </h1>
       </div>
     </main>
   );

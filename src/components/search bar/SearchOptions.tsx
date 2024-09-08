@@ -75,6 +75,7 @@ export default function SearchOptions() {
             name="kelasFaskes"
             className="border-2 w-full rounded-lg border-blue-200 mb-2 p-2"
           >
+            <option value=""></option>
             {TipeFaskes.map((i, index) => {
               return (
                 <option key={index} id={i} value={i}>
@@ -90,6 +91,7 @@ export default function SearchOptions() {
             name="ruangRawat"
             className="border-2 w-full rounded-lg border-blue-200 mb-2 p-2"
           >
+            <option value=""></option>
             {listRuangRawat.map((i, index) => {
               return (
                 <option key={index} id={i} value={i}>

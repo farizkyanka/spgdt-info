@@ -4,8 +4,6 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import useSWR from "swr";
 import { PayloadType } from "@/lib/schema/Faskes";
-import SearchOptions from "@/components/search bar/SearchOptions";
-import SubmitButton from "@/components/elements/SubmitButton";
 import RegularButton from "./RegularButton";
 
 export default function SearchResult() {
@@ -41,27 +39,28 @@ export default function SearchResult() {
           key={index}
           className="m-2 rounded-xl border-4 border-orange-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6"
         >
-          <div className="p-2 max-h-56 flex flex-col overflow-hidden">
+          <div className="p-2 max-h-56 flex flex-col overflow-auto">
             <Link className="self-center" href={`/content/${unit._id}`}>
               <RegularButton>
                 <h2 className="font-bold">{unit["namaFaskes"]}</h2>
               </RegularButton>
             </Link>
+            <h2 className="p-2 m-2 rounded border-2 border-orange-500 text-orange-500 font-bold text-center">{`SPGDT: ${unit.nomorSPGDT}`}</h2>
             <h2>{unit["kelasFaskes"]}</h2>
             <h2>{`${unit.alamat.jalan} ${unit.alamat.kotakabupaten}`}</h2>
           </div>
-          <div className="p-2 h-56 flex flex-col">
+          <div className="p-2 max-h-56 flex flex-col">
             <h1 className="self-center mb-2">Rawat</h1>
             <ul className="flex flex-col overflow-auto">
               {unit["ruangRawat"].map((item, index) => (
-                <li className="flex justify-around" key={index}>
+                <li className="flex justify-between" key={index}>
                   <span>{item.ruang}</span>
                   <span>{item.jumlah}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="p-2 h-56 flex-grow flex flex-col">
+          <div className="p-2 max-h-56 flex flex-col">
             <h1 className="self-center">Fasilitas Emergensi</h1>
             <ul className="overflow-auto">
               {unit["fasilitasEmergensi"].map((item, index) => (
@@ -69,7 +68,7 @@ export default function SearchResult() {
               ))}
             </ul>
           </div>
-          <div className="p-2 h-56 flex flex-col">
+          <div className="p-2 max-h-56 flex flex-col">
             <h2 className="self-center mb-2">Spesialis</h2>
             <ul className="overflow-auto">
               {unit.spesialis.map((item, index) => (
@@ -88,7 +87,7 @@ export default function SearchResult() {
               ))}
             </ul>
           </div>
-          <div className="p-2 h-56 flex-grow flex flex-col">
+          <div className="p-2 max-h-56 flex flex-col">
             <h1 className="self-center mb--2">Fasilitas Diagnostik</h1>
             <div className="overflow-auto">
               {unit["fasilitasDiagnostik"].map((i, index) => (
@@ -105,7 +104,7 @@ export default function SearchResult() {
               ))}
             </div>
           </div>
-          <div className="p-2 h-56 flex-grow flex flex-col">
+          <div className="p-2 max-h-56 flex flex-col">
             <h1 className="self-center mb-2">Fasilitas Terapi</h1>
             <ul className="overflow-auto">
               {unit["fasilitasTerapi"].map((i, index) => (
