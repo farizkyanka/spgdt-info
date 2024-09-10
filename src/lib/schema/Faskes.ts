@@ -3,6 +3,7 @@ import mongoose, { Document, Schema } from "mongoose";
 
 export interface PayloadType extends FormTypeDataFaskes {
   _id: string;
+  recentlyUpdated: string;
 }
 
 export interface IFaskes extends Document {
@@ -33,6 +34,7 @@ export interface IFaskes extends Document {
     }
   ];
   fasilitasTerapi: [{ unit: string }];
+  recentlyUpdated: String;
 }
 
 const faskesSchema: Schema<IFaskes> = new mongoose.Schema({
@@ -63,6 +65,7 @@ const faskesSchema: Schema<IFaskes> = new mongoose.Schema({
     },
   ],
   fasilitasTerapi: [{ unit: String }],
+  recentlyUpdated: { type: String },
 });
 
 const Faskes =
