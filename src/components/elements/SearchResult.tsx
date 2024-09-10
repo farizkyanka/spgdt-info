@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import useSWR from "swr";
 import { PayloadType } from "@/lib/schema/Faskes";
 import RegularButton from "./RegularButton";
+import Spinner from "./Spinner";
 
 export default function SearchResult() {
   const params = useSearchParams().toString();
@@ -29,7 +30,12 @@ export default function SearchResult() {
     fetchData
   );
 
-  if (isLoading) return <h5 className="pt-20 text-center">loading...</h5>;
+  if (isLoading)
+    return (
+      <h5 className="pt-20 text-center">
+        <Spinner />
+      </h5>
+    );
   if (error) return <h6>error</h6>;
 
   return (

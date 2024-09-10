@@ -1,5 +1,6 @@
 "use client";
 
+import Spinner from "@/components/elements/Spinner";
 import SubmitButton from "@/components/elements/SubmitButton";
 import {
   FormTypeDataFaskes,
@@ -13,6 +14,7 @@ export default function FormDataFaskes() {
   const router = useRouter();
   const params = useParams<{ id: string }>();
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
   const {
     handleSubmit,
     reset,
@@ -24,7 +26,7 @@ export default function FormDataFaskes() {
       `${process.env.NEXT_PUBLIC_API}/api/faskes/${params.id}`
     );
     try {
-      if (!result.ok) return null;
+      if (!result.ok) return setIsError(true);
       const data = await result.json();
       reset(data);
       setIsLoading(false);
@@ -50,9 +52,19 @@ export default function FormDataFaskes() {
       return router.push(`/content/${responseData._id}`);
     }
   };
-
+  if (isError) {
+    return (
+      <div className="text-center pt-20 text-red-500">error loading form</div>
+    );
+  }
   if (isLoading) {
-    return <div className="text-center pt-20">loading form...</div>;
+    return (
+      <div className="flex justify-center">
+        <div className="text-center pt-40">
+          <Spinner />
+        </div>
+      </div>
+    );
   } else if (!isLoading)
     return (
       <main className="flex justify-center pt-20">

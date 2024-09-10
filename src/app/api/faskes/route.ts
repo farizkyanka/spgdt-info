@@ -12,7 +12,6 @@ export async function POST(req: Request) {
   const body = await req.json();
   const currentDate = { recentlyUpdated: new Date() };
   const bodyDate = { ...body, ...currentDate };
-  console.log(bodyDate);
   const faskesData = new Faskes(bodyDate);
   const dbResponse = await faskesData.save();
   return Response.json(dbResponse);
