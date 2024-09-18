@@ -35,6 +35,7 @@ export default function SearchOptions() {
           </label>
           <select
             name="provinsi"
+            id="provinsi"
             className="border-2 w-full min-w-56 rounded-lg border-blue-200 mb-2 p-2"
           >
             {provinsi.map((i) => {
@@ -57,6 +58,7 @@ export default function SearchOptions() {
           <select
             className="border-2 w-full min-w-56 rounded-lg border-blue-200 mb-2 p-2"
             name="kotakabupaten"
+            id="kotakabupaten"
           >
             {kota.map((i, index) => {
               return (
@@ -73,6 +75,7 @@ export default function SearchOptions() {
           <label htmlFor="kelasFaskes">Kelas Faskes</label>
           <select
             name="kelasFaskes"
+            id="kelasFaskes"
             className="border-2 w-full rounded-lg border-blue-200 mb-2 p-2"
           >
             <option value=""></option>
@@ -86,9 +89,10 @@ export default function SearchOptions() {
           </select>
         </fieldset>
         <fieldset className="flex flex-col">
-          <h6>Ruang Rawat</h6>
+          <label htmlFor="ruangRawat">Ruang Rawat</label>
           <select
             name="ruangRawat"
+            id="ruangRawat"
             className="border-2 w-full rounded-lg border-blue-200 mb-2 p-2"
           >
             <option value=""></option>
@@ -105,50 +109,55 @@ export default function SearchOptions() {
 
       <fieldset className="flex flex-wrap justify-evenly place-items-center">
         <div>
-          <h6>Fasilitas Terapi</h6>
+          <label htmlFor="fasilitasTerapi">Fasilitas Terapi</label>
           <input
             type="text"
             className="border-2 w-full rounded-lg border-blue-200 mb-2 p-2"
             placeholder="Fasilitas Terapi"
             name="fasilitasTerapi"
+            id="fasilitasTerapi"
           />
         </div>
         <div>
-          <h6>Fasilitas Diagnostik</h6>
+          <label htmlFor="fasilitasDiagnostik">Fasilitas Diagnostik</label>
           <input
             type="text"
             className="border-2 w-full rounded-lg border-blue-200 mb-2 p-2"
             placeholder="Fasilitas Diagnostik"
             name="fasilitasDiagnostik"
+            id="fasilitasDiagnostik"
           />
         </div>
         <div>
-          <h6>Fasilitas Kegawatdaruratan</h6>
+          <label htmlFor="fasilitasEmergensi">Fasilitas Kegawatdaruratan</label>
           <input
             type="text"
             className="border-2 w-full rounded-lg border-blue-200 mb-2 p-2"
             placeholder="Fasilitas Emergensi"
             name="fasilitasEmergensi"
+            id="fasilitasEmergensi"
           />
         </div>
       </fieldset>
       <fieldset className="flex flex-wrap place-items-center text-justify justify-evenly">
         <div className="flex place-items-center">
-          <h6>Spesialis</h6>
+          <label htmlFor="spesialis">Spesialis</label>
           <input
             type="text"
             className="ml-2 border-2 w-full rounded-lg border-blue-200 mb-2 p-2"
             placeholder="Spesialis"
             name="spesialis"
+            id="spesialis"
           />
         </div>
         <div className="flex place-items-center">
-          <h6>SubSpesialis</h6>
+          <label htmlFor="subspesialis">SubSpesialis</label>
           <input
             type="text"
             className="ml-2 border-2 w-full rounded-lg border-blue-200 mb-2 p-2"
             placeholder="Subspesialis"
             name="subspesialis"
+            id="subspesialis"
           />
         </div>
       </fieldset>

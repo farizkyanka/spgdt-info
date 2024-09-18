@@ -42,7 +42,7 @@ export async function GET(req: Request) {
     ruangRawat: {
       $elemMatch: { ruang: { $regex: ruangRawat, $options: "i" } },
     },
-  }).limit(20);
+  });
 
   return Response.json(faskes);
 }

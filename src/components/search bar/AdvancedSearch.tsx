@@ -21,14 +21,7 @@ export default function AdvancedSearch() {
   const [toggleCat, setToggleCat] = useState(false);
 
   return (
-    <search
-      className="flex flex-col w-full border-2 sm:w-3/4 2xl:w-1/2 m-2 p-2 rounded-xl bg-white"
-      // style={{
-      //   backgroundImage: "url(/background-lines.svg)",
-      //   backgroundSize: "cover",
-      //   backgroundAttachment: "fixed",
-      // }}
-    >
+    <search className="flex flex-col w-full border-2 sm:w-3/4 2xl:w-1/2 m-2 p-2 rounded-xl bg-white">
       <div className="absolute -mt-24 -ml-4 font-semibold text-7xl hidden md:inline">
         Cari Faskes
       </div>
@@ -39,12 +32,13 @@ export default function AdvancedSearch() {
           <SubmitButton>Search</SubmitButton>
         </form>
       )}
-      <p
-        className="text-gray-400 text-sm hover:underline"
+      <button
+        type="button"
+        className="mt-2 p-1 rounded flex-shrink h-fit w-fit text-gray-400 text-sm hover:bg-gray-400 hover:text-white"
         onClick={() => setToggleCat(!toggleCat)}
       >
         {toggleCat ? "gunakan teks pencarian" : "gunakan pilihan pencarian"}
-      </p>
+      </button>
     </search>
   );
 }
