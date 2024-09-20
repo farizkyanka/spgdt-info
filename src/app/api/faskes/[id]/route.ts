@@ -16,7 +16,7 @@ export async function PATCH(
 ) {
   await dbConnect();
   const body = await req.json();
-  const currentDate = { recentlyUpdated: new Date() };
+  const currentDate = { recentlyUpdated: Date.now() };
   const bodyDate = { ...body, ...currentDate };
   const faskes = await Faskes.findByIdAndUpdate(params.id, bodyDate);
   return Response.json(faskes);

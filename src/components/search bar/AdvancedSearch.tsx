@@ -4,8 +4,6 @@ import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import SearchOptions from "./SearchOptions";
 import SubmitButton from "../elements/SubmitButton";
-import bg from "../../../public/vecteezy_abstract-wallpaper-of-straight-blue-and-purple-lines-in-the_17283298.svg";
-import Image from "next/image";
 
 export const listRuangRawat = [
   "PICU",

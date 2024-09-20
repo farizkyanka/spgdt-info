@@ -10,7 +10,7 @@ export async function GET() {
 export async function POST(req: Request) {
   await dbConnect();
   const body = await req.json();
-  const currentDate = { recentlyUpdated: new Date() };
+  const currentDate = { recentlyUpdated: Date.now() };
   const bodyDate = { ...body, ...currentDate };
   const faskesData = new Faskes(bodyDate);
   const dbResponse = await faskesData.save();
