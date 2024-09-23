@@ -17,8 +17,6 @@ export default function Page() {
       }
     );
     if (response.ok) {
-      revalidatePath("/find");
-      revalidatePath(`/content/${id}`);
       router.push("/");
     }
   };
