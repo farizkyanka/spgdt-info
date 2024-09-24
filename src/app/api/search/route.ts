@@ -5,44 +5,120 @@ export async function GET(req: Request) {
   await dbConnect();
 
   const { searchParams } = new URL(req.url);
-  const query = searchParams.get("query") || "";
-  let provinsi = searchParams.get("provinsi") || "";
-  let kotakabupaten = searchParams.get("kotakabupaten") || "";
-  let spesialis = searchParams.get("spesialis") || "";
-  let subspesialis = searchParams.get("subspesialis") || "";
-  let kelasFaskes = searchParams.get("kelasFaskes") || "";
-  let fasilitasEmergensi = searchParams.get("fasilitasEmergensi") || "";
-  let fasilitasDiagnostik = searchParams.get("fasilitasDiagnostik") || "";
-  let fasilitasTerapi = searchParams.get("fasilitasTerapi") || "";
-  let ruangRawat = searchParams.get("ruangRawat") || "";
-  const faskes = await Faskes.find({
-    namaFaskes: { $regex: query, $options: "i" },
-    "alamat.provinsi": { $regex: provinsi, $options: "i" },
-    "alamat.kotakabupaten": { $regex: kotakabupaten, $options: "i" },
-    spesialis: {
-      $elemMatch: {
-        spesialisasi: { $regex: spesialis, $options: "i" },
-        // sub: { $elemMatch: { sub: { $regex: subspesialis, $options: "i" } } },
-      },
-    },
-    kelasFaskes: { $regex: kelasFaskes, $options: "i" },
-    fasilitasEmergensi: {
-      $elemMatch: { unit: { $regex: fasilitasEmergensi, $options: "i" } },
-    },
-    fasilitasTerapi: {
-      $elemMatch: { unit: { $regex: fasilitasTerapi, $options: "i" } },
-    },
-    fasilitasDiagnostik: {
-      $elemMatch: {
-        unit: {
-          $elemMatch: { unit: { $regex: fasilitasDiagnostik, $options: "i" } },
-        },
-      },
-    },
-    ruangRawat: {
-      $elemMatch: { ruang: { $regex: ruangRawat, $options: "i" } },
-    },
-  });
 
+  function dbQuery(searchParams: URLSearchParams) {
+    const namaFaskes = searchParams.get("query")
+      ? { namaFaskes: { $regex: searchParams.get("query"), $options: "i" } }
+      : null;
+    const provinsi = searchParams.get("provinsi")
+      ? {
+          "alamat.provinsi": {
+            $regex: searchParams.get("provinsi"),
+            $options: "i",
+          },
+        }
+      : null;
+    const kotakabupaten = searchParams.get("kotakabupaten")
+      ? {
+          "alamat.kotakabupaten": {
+            $regex: searchParams.get("kotakabupaten"),
+            $options: "i",
+          },
+        }
+      : null;
+    const subspesialis = searchParams.get("subspesialis")
+      ? {
+          sub: {
+            $elemMatch: {
+              sub: { $regex: searchParams.get("subspesialis"), $options: "i" },
+            },
+          },
+        }
+      : null;
+    const spesialis = searchParams.get("spesialis")
+      ? {
+          spesialis: {
+            $elemMatch: {
+              spesialisasi: {
+                $regex: searchParams.get("spesialis"),
+                $options: "i",
+              },
+              ...subspesialis,
+            },
+          },
+        }
+      : null;
+
+    const kelasFaskes = searchParams.get("kelasFaskes")
+      ? {
+          kelasFaskes: {
+            $regex: searchParams.get("kelasFaskes"),
+            $options: "i",
+          },
+        }
+      : null;
+    const fasilitasEmergensi = searchParams.get("fasilitasEmergensi")
+      ? {
+          fasilitasEmergensi: {
+            $elemMatch: {
+              unit: {
+                $regex: searchParams.get("fasilitasEmergensi"),
+                $options: "i",
+              },
+            },
+          },
+        }
+      : null;
+    const fasilitasDiagnostik = searchParams.get("fasilitasDiagnostik")
+      ? {
+          fasilitasDiagnostik: {
+            $elemMatch: {
+              unit: {
+                $elemMatch: {
+                  unit: {
+                    $regex: searchParams.get("fasilitasDiagnostik"),
+                    $options: "i",
+                  },
+                },
+              },
+            },
+          },
+        }
+      : null;
+    const fasilitasTerapi = searchParams.get("fasilitasTerapi")
+      ? {
+          fasilitasTerapi: {
+            $elemMatch: {
+              unit: {
+                $regex: searchParams.get("fasilitasTerapi"),
+                $options: "i",
+              },
+            },
+          },
+        }
+      : null;
+    const ruangRawat = searchParams.get("ruangRawat")
+      ? {
+          ruangRawat: {
+            $elemMatch: {
+              ruang: { $regex: searchParams.get("ruangRawat"), $options: "i" },
+            },
+          },
+        }
+      : null;
+    const dbQuery = {
+      ...namaFaskes,
+      ...provinsi,
+      ...kotakabupaten,
+      ...spesialis,
+      ...kelasFaskes,
+      ...fasilitasEmergensi,
+      ...fasilitasDiagnostik,
+      ...fasilitasTerapi,
+      ...ruangRawat,
+    };
+    return dbQuery;
+  }
+  const faskes = await Faskes.find(dbQuery(searchParams));
   return Response.json(faskes);
 }

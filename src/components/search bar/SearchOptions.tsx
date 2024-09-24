@@ -6,6 +6,13 @@ import { listRuangRawat } from "./AdvancedSearch";
 import { useState } from "react";
 
 export default function SearchOptions() {
+  const [subsp, setSubsp] = useState("");
+
+  const handleSubsp = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setSubsp(e.target.value);
+  };
+
   const [kota, setKota] = useState([
     {
       id: "",
@@ -148,16 +155,24 @@ export default function SearchOptions() {
             placeholder="Spesialis"
             name="spesialis"
             id="spesialis"
+            onChange={(e) => {
+              handleSubsp(e);
+            }}
           />
         </div>
         <div className="flex place-items-center">
           <label htmlFor="subspesialis">SubSpesialis</label>
           <input
             type="text"
-            className="ml-2 border-2 w-full rounded-lg border-blue-200 mb-2 p-2"
+            className={`ml-2 border-2 w-full rounded-lg border-blue-200 mb-2 p-2 ${
+              subsp.length > 0
+                ? ""
+                : "disabled:border-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
+            }`}
             placeholder="Subspesialis"
             name="subspesialis"
             id="subspesialis"
+            disabled={subsp.length > 0 ? false : true}
           />
         </div>
       </fieldset>

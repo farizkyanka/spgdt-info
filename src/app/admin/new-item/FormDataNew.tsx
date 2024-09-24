@@ -6,7 +6,6 @@ import {
 } from "@/components/forms/Data Faskes/FormDataFaskesSchema";
 import { useRouter } from "next/navigation";
 import FormFaskesField from "@/components/forms/Data Faskes/FormFaskesField";
-import { ReactHTMLElement } from "react";
 
 export default function FormDataFaskes() {
   const router = useRouter();
@@ -26,7 +25,9 @@ export default function FormDataFaskes() {
       });
 
       if (response.ok) {
-        return router.push("/");
+        const data = await response.json();
+        console.log(data);
+        return router.push(`../content/${data._id}`);
       }
     } catch (e) {
       throw new Error("error");
