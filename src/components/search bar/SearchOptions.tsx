@@ -67,6 +67,7 @@ export default function SearchOptions() {
             name="kotakabupaten"
             id="kotakabupaten"
           >
+            <option></option>
             {kota.map((i, index) => {
               return (
                 <option key={index} value={i.name}>
