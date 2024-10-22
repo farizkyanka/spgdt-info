@@ -115,8 +115,8 @@ export default function SearchOptions() {
         </fieldset>
       </fieldset>
 
-      <fieldset className="flex flex-wrap justify-evenly place-items-center">
-        <div>
+      <fieldset className="flex flex-wrap justify-center place-items-center p-2">
+        {/* <div>
           <label htmlFor="fasilitasTerapi">Fasilitas Terapi</label>
           <input
             type="text"
@@ -145,7 +145,15 @@ export default function SearchOptions() {
             name="fasilitasEmergensi"
             id="fasilitasEmergensi"
           />
-        </div>
+        </div> */}
+        <label htmlFor="fasilitas">Fasilitas </label>
+        <input
+          type="text"
+          className="border-2 rounded-lg border-blue-200 m-2 p-2 w-1/2"
+          placeholder="Fasilitas atau pelayanan seperti CT-Scan, bedah emergensi, atau transplantasi..."
+          name="fasilitas"
+          id="fasilitas"
+        />
       </fieldset>
       <fieldset className="flex flex-wrap place-items-center text-justify justify-evenly">
         <div className="flex place-items-center">
