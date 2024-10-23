@@ -1,4 +1,4 @@
-import { login } from "@/app/admin/login/action";
+import { login } from "@/app/(app)/admin/login/action";
 import SubmitButton from "./SubmitButton";
 
 export default function LoginCard() {

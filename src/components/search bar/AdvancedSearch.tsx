@@ -22,7 +22,7 @@ export default function AdvancedSearch() {
   return (
     <AnimatePresence>
       <search className="flex flex-col w-full border-2 sm:w-3/4 2xl:w-1/2 m-2 p-2 rounded-xl bg-white">
-        <div className="absolute -mt-24 -ml-4 font-semibold text-7xl hidden md:inline">
+        <div className="absolute -mt-16 md:-mt-24 -ml-4 font-semibold text-5xl md:text-7xl inline">
           Cari Faskes
         </div>
         {!toggleCat && (
